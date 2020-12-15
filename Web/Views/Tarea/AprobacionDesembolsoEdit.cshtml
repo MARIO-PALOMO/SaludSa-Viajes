@@ -1,0 +1,700 @@
+﻿
+@{
+    ViewBag.Title = "Aprobación de desembolso";
+}
+
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Tarea")">Tareas pendientes</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_tarea" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="TareaAprobacionDesembolsoEdit" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-check font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div ng-show="DataAccion != 'show'" class="actions">
+                    <a href="@Url.Action("Index", "Tarea")" class="btn btn-circle dark btn-outline">{{ TareaProcesada ? 'Regresar' : 'Cancelar' }} <i class="fa fa-times"></i></a>
+                    <a ng-click="TareaProcesada ? '' : Crear()" ng-show="!TareaProcesada" class="btn btn-circle green" href="javascript:;">Enviar <i class="fa fa-check"></i></a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal">
+
+                    <input id="SolicitudId" value="@ViewBag.Id" type="hidden" />
+                    <input id="TareaId" value="@ViewBag.tareaId" type="hidden" />
+                    <input id="Accion" value="@ViewBag.Accion" type="hidden" />
+                    <input id="Tipo" value="@ViewBag.Tipo" type="hidden" />
+
+                    <div class="form-body" style="padding-top:0">
+
+                        <div ng-show="Tarea.TareaPadre && Tarea.TareaPadre.Observacion" class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-warning">
+                                    <strong>{{ Tarea.TareaPadre.NombreCompletoResponsable }}:</strong> {{ Tarea.TareaPadre.Observacion }}
+                                </div>
+
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="note note-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <b>Solicitud No:</b> {{ Solicitud.NumeroSolicitud }}
+                                </div>
+                                <div class="col-md-6">
+                                    <b>Fecha de solicitud:</b> {{ Solicitud.FechaSolicitud | json_js_datetime }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Información del Solicitante</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Empresa <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.CompaniaDescripcion" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Email <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Email" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Cargo <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Cargo" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Nombre <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.NombreCompleto" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Departamento <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Departamento" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Ciudad <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.CiudadDescripcion" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Datos de la Compra</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Empresa para la que se compra <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <select ng-model="Solicitud.EmpresaParaLaQueSeCompra" disabled option="Metadatos.Empresas" ng-options="option.Nombre for option in Metadatos.Empresas track by option.Codigo" chosen></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Proveedor sugerido</label>
+                                            <div class="col-md-7">
+                                                <input ng-model="Solicitud.ProveedorSugerido" disabled maxlength="300" type="text" class="form-control input-sm mayusculas">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Frecuencia <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <select ng-model="Solicitud.Frecuencia" disabled chosen>
+                                                    <option value="Única">Única</option>
+                                                    <option value="Eventual">Eventual</option>
+                                                    <option value="Recurrente">Recurrente</option>
+                                                    <option value="Proveedor único">Proveedor único</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Monto estimado <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <input ng-model="Solicitud.MontoEstimado" disabled ng-dos-decimales type="text" class="form-control input-sm text-right">
+                                                <span class="help-block">El monto estimado debe incluir IVA.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div ng-show="Solicitud.SolicitanteObj.Departamento == 'GERENCIA DE MERCADEO' || Solicitud.SolicitanteObj.Departamento == 'GERENCIA DE MERCADEO Y VENTAS'" class="form-group">
+                                            <label class="control-label col-md-4">Producto mercadeo <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <select ng-model="Solicitud.ProductoMercadeo" disabled option="Metadatos.ProductosMercadeo" ng-options="option.Nombre for option in Metadatos.ProductosMercadeo track by option.Codigo" chosen></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Descripción <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <textarea ng-model="Solicitud.Descripcion" disabled maxlength="500" class="form-control input-sm mayusculas" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Requerimientos adjuntos</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.RequerimientosAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'requerimiento')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="(!Solicitud.RequerimientosAdjuntosPrevisualizar || Solicitud.RequerimientosAdjuntosPrevisualizar.length == 0) && (!Solicitud.RequerimientosAdjuntosSalvados || Solicitud.RequerimientosAdjuntosSalvados.length == 0)">
+                                                        <td colspan="2" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Bienes/Servicios a comprar</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-bordered table-advance">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:50px;" title="Compra internacional">COMEX</th>
+                                                <th>Tipo <span class="font-red-mint">*</span></th>
+                                                <th>Bien/Servicio <span class="font-red-mint">*</span></th>
+                                                <th>Grupo</th>
+                                                <th>Observación <span class="font-red-mint">*</span></th>
+                                                <th style="width:100px;">Cantidad <span class="font-red-mint">*</span></th>
+
+                                                <th style="width:100px;">Valor <span class="font-red-mint">*</span></th>
+                                                <th style="width: 50px;">IVA <span class="font-red-mint">*</span></th>
+                                                <th style="width:100px;">Total <span class="font-red-mint">*</span></th>
+                                                <th>Proveedor <span class="font-red-mint">*</span></th>
+
+                                                <th style="width:80px;">Distribución</th>
+                                                <th>URL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="Detalle in Solicitud.Detalles">
+                                                <td class="text-align-center" style="padding:3px 0 0 0;">
+                                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                        <input ng-model="Detalle.CompraInternacional" disabled type="checkbox" class="checkboxes" />
+                                                        <span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Tipo == '0' ? 'Bien' : 'Servicio' }}
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Tipo == '0' ? Detalle.ProductoBien.Nombre : Detalle.ProductoServicio.Nombre }}
+                                                </td>
+                                                <td style="padding:0">
+                                                    {{ Detalle.Tipo == '0' ? Detalle.ProductoBien.Grupo : Detalle.ProductoServicio.Grupo }}
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Observacion }}
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Cantidad }}
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Valor }}
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Impuesto.Descripcion }}
+                                                </td>
+                                                <td>
+                                                    {{ Detalle.Total }}
+                                                </td>
+                                                <td>
+                                                    {{ '(' + Detalle.Proveedor.TipoIdentificacion + '-' + Detalle.Proveedor.Identificacion + ') ' + Detalle.Proveedor.Nombre }}
+                                                </td>
+                                                <td style="padding:0">
+                                                    <a ng-click="AdicionarDistribucion(Detalle)" class="btn default btn-xs" style="height: 100%; width: 100%; padding:3px;" href="javascript:;"><i class="fa fa-plus-square-o {{ ((Detalle.PlantillaDistribucionDetalle && Detalle.PlantillaDistribucionDetalle.length) > 0 ? 'font-red-mint' : '') }}"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ Detalle.Url }}" ng-show="Detalle.Url" target="_blank">{{ Detalle.Url }}</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-align-reverse" colspan="8"><b>Total:</b></td>
+                                                <td style="padding:0">
+                                                    {{ TotalDetalles }}
+                                                </td>
+                                                <td colspan="3"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Cotizaciones adjuntos</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.CotizacionesAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'cotización')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="!Solicitud.CotizacionesAdjuntosSalvados || Solicitud.CotizacionesAdjuntosSalvados.length == 0">
+                                                        <td colspan="2" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Evaluaciones adjuntos</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.EvaluacionesAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'evaluación')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="!Solicitud.EvaluacionesAdjuntosSalvados || Solicitud.EvaluacionesAdjuntosSalvados.length == 0">
+                                                        <td colspan="2" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Recepción de Bienes/Servicios</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5">No. de Orden Madre</label>
+                                        <div class="col-md-7">
+                                            <input ng-model="Tarea.NumeroOrdenMadre" type="text" disabled class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5">Fecha de Recepción</label>
+                                        <div class="col-md-7">
+                                            <input ng-model="Recepcion.FechaRecepcion" type="text" disabled class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5">No. de Recepción</label>
+                                        <div class="col-md-7">
+                                            <input ng-model="Recepcion.NumeroRecepcion" type="text" disabled class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-bordered table-advance">
+                                            <thead>
+                                                <tr>
+                                                    <th>Bien/Servicio <span class="font-red-mint">*</span></th>
+                                                    <th>Observación <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Cantidad <span class="font-red-mint">*</span></th>
+
+                                                    <th style="width:100px;">Valor <span class="font-red-mint">*</span></th>
+                                                    <th style="width:50px;">IVA <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Total <span class="font-red-mint">*</span></th>
+
+                                                    <th style="width:100px;">Cantidad Recepción <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Valor Recepción <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Saldo <span class="font-red-mint">*</span></th>
+
+                                                    <th style="width:80px;">Distribución</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="Detalle in Recepcion.RecepcionLineas">
+                                                    <td>
+                                                        {{ Detalle.Tipo == '0' ? Detalle.ProductoBien.Nombre : Detalle.ProductoServicio.Nombre }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Observacion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Cantidad }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Valor }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Impuesto.Descripcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Total }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ Detalle.CantidadRecepcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.ValorRecepcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Saldo }}
+                                                    </td>
+
+                                                    <td style="padding:0">
+                                                        <a ng-click="AdicionarDistribucionRecepcion(Detalle)" class="btn default btn-xs" style="height: 100%; width: 100%; padding:3px;" href="javascript:;"><i class="fa fa-plus-square-o {{ ((Detalle.PlantillaDistribucionDetalle && Detalle.PlantillaDistribucionDetalle.length) > 0 ? 'font-red-mint' : '') }}"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-align-reverse" colspan="6"><b>Totales:</b></td>
+                                                    <td>
+                                                        {{ TotalCantidadRecepcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ TotalValorRecepcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ TotalSaldo }}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Facturas físicas</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.FacturasAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'factura')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="!Solicitud.FacturasAdjuntosSalvados || Solicitud.FacturasAdjuntosSalvados.length == 0">
+                                                        <td colspan="3" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Facturas electrónicas</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Recepcion.ComprobantesElectronicos">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td><a href="{{ Metadatos.UrlVisorRidePdf + adjunto.claveAcceso }}" target="_blank">{{ adjunto.establecimiento + '-' + adjunto.puntoEmision + '-' + adjunto.secuencial }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="!Recepcion.ComprobantesElectronicos || Recepcion.ComprobantesElectronicos.length == 0">
+                                                        <td colspan="3" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Historial de recepciones</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-condensed table-bordered table-advance">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>No.</th>
+                                            <th>Orden hija</th>
+                                            <th>Artículo</th>
+                                            <th>Cantidad</th>
+                                            <th>Valor</th>
+                                            <th>IVA</th>
+                                            <th>Total</th>
+                                            <th>Saldo</th>
+                                            <th>Aprobada</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="historial in Metadatos.HistorialRecepciones">
+                                        <tr ng-repeat="linea in historial.RecepcionLineas">
+                                            <td>{{ historial.FechaRecepcion | json_js_date }}</td>
+                                            <td>{{ Solicitud.NumeroSolicitud + '-' + historial.NumeroRecepcion }}</td>
+                                            <td>{{ historial.NumeroOrdenHija }}</td>
+                                            <td>{{ linea.ProductoNombre }}</td>
+                                            <td>{{ linea.Cantidad | currency : '' : 2 }}</td>
+                                            <td>{{ linea.ValorUnitario | currency : '' : 2 }}</td>
+                                            <td>{{ linea.PorcentajeImpuestoVigente + ' %' }}</td>
+                                            <td>{{ linea.Valor | currency : '' : 2 }}</td>
+                                            <td>{{ linea.Saldo | currency : '' : 2 }}</td>
+                                            <td>
+                                                <i ng-show="historial.Aprobada" class="fa fa-check text-success"></i>
+                                                <i ng-show="!historial.Aprobada" class="fa fa-minus"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody ng-show="!Metadatos.HistorialRecepciones || Metadatos.HistorialRecepciones.length == 0">
+                                        <tr>
+                                            <td class="text-center" colspan="9"><i class="fa fa-warning text-warning"></i> No existen elementos para mostrar</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Resultado de Aprobación</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Acción <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <select ng-disabled="TareaProcesada" ng-model="Accion" chosen>
+                                                    <option value="Aprobar">Aprobar</option>
+                                                    <option value="Negar">Negar</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Comentario <span ng-show="Accion != 'Aprobar'" class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <textarea ng-disabled="TareaProcesada" maxlength="300" ng-model="Observacion" class="form-control mayusculas" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Historial de tareas</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-bordered table-advance">
+                                        <thead>
+                                            <tr>
+                                                <th><i class="fa fa-flag-o"></i></th>
+                                                <th>No.</th>
+                                                <th><i class="fa fa-tasks"></i> Actividad</th>
+                                                <th><i class="fa fa-user-secret"></i> Responsable</th>
+                                                <th><i class="fa fa-truck"></i> Proveedor</th>
+                                                <th>Recepción</th>
+                                                <th><i class="fa fa-calendar"></i> Creación</th>
+                                                <th><i class="fa fa-calendar"></i> Procesamiento</th>
+                                                <th> <i class="fa fa-cogs"></i> Acción</th>
+                                                <th>Observación</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="(Index, Tarea) in Solicitud.Tareas">
+                                                <td>
+                                                    <i ng-show="Tarea.TiempoColor == 1" class="fa fa-flag font-green-sharp"></i>
+                                                    <i ng-show="Tarea.TiempoColor == 2" class="fa fa-flag text-warning"></i>
+                                                    <i ng-show="Tarea.TiempoColor == 3" class="fa fa-flag font-red-mint"></i>
+                                                </td>
+                                                <td>{{ Index + 1 }}</td>
+                                                <td>{{ Tarea.Actividad }}</td>
+                                                <td>{{ Tarea.NombreCompletoResponsable }}</td>
+                                                <td>{{ Tarea.NombreProveedor }}</td>
+                                                <td>{{ Tarea.NumeroRecepcion == 0 ? '' : Tarea.NumeroRecepcion }}</td>
+                                                <td>{{ Tarea.FechaCreacion | json_js_datetime }}</td>
+                                                <td>{{ Tarea.FechaProcesamiento | json_js_datetime }}</td>
+                                                <td>{{ Tarea.Accion }}</td>
+                                                <td>{{ Tarea.Observacion }}</td>
+                                            </tr>
+                                            <tr ng-show="Solicitud.Tareas.length == 0">
+                                                <td class="text-center" colspan="10"><i class="fa fa-warning text-warning"></i> No existen elementos para mostrar</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-show="DataAccion != 'show'" class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a href="@Url.Action("Index", "Tarea")" class="btn btn-circle dark btn-outline">{{ TareaProcesada ? 'Regresar' : 'Cancelar' }} <i class="fa fa-times"></i></a>
+                                        <a ng-click="TareaProcesada ? '' : Crear()" ng-show="!TareaProcesada" class="btn btn-circle green" href="javascript:;">Enviar <i class="fa fa-check"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"> </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_platilla_distribucion.*@
+    <script src="~/AngularJS/app/PlantillaDistribucion/controllers/PlantillaDistribucionCreate.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_tarea.*@
+    <script src="~/AngularJS/app/Tarea/controllers/TareaAprobacionDesembolsoEdit.js"></script>
+}

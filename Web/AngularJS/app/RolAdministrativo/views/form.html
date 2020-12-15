@@ -1,0 +1,51 @@
+﻿<div class="modal-content" id="modal_rol_administrativo_create" ng-modal-draggable="modal_rol_administrativo_create">
+    <div class="modal-header">
+        <button ng-click="Cerrar()" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">
+            <i ng-show="Data.Accion == 'create'" class="icon-plus"></i>
+            <i ng-show="Data.Accion == 'edit'" class="icon-note"></i>
+            <i ng-show="Data.Accion == 'detail'" class="icon-eye"></i>
+            {{ Data.TituloPag }}
+        </h4>
+    </div>
+    <div class="modal-body form">
+        <form action="#" class="form-horizontal">
+            <div class="form-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Rol <span class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <select ng-model="Rol.RolObj" ng-change="CambiarTipoRol()" ng-disabled="Data.Accion == 'detail'" option="Metadatos.Roles" ng-options="option.Nombre for option in Metadatos.Roles track by option.Id" chosen></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Colaborador <span class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <select ng-model="Rol.ColaboradorObj" ng-disabled="Data.Accion == 'detail'" option="Metadatos.Colaboradores" ng-options="option.NombreCompleto for option in Metadatos.Colaboradores track by option.Usuario" chosen></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Empresa <span ng-show="Rol.RolObj.Tipo == 'P'" class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <select ng-model="Rol.EmpresaObj" ng-disabled="Data.Accion == 'detail' || Rol.RolObj.Tipo == 'A'" option="Metadatos.Empresas" ng-options="option.Nombre for option in Metadatos.Empresas track by option.Codigo" chosen></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Ciudad <span ng-show="Rol.RolObj.Tipo == 'P'" class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <select ng-model="Rol.CiudadObj" ng-disabled="Data.Accion == 'detail' || Rol.RolObj.Tipo == 'A'" option="Metadatos.Ciudades" ng-options="option.Nombre for option in Metadatos.Ciudades track by option.Id" chosen></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="Cerrar()" href="javascript:;" class="btn dark btn-outline" data-dismiss="modal">Cancelar <i class="fa fa-times"></i></a>
+        <a ng-click="Data.Accion == 'detail' ? '' : Crear()" ng-disabled="Data.Accion == 'detail'" href="javascript:;" class="btn green">Guardar <i class="fa fa-save"></i></a>
+    </div>
+</div>

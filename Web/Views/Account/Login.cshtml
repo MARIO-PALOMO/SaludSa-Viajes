@@ -1,0 +1,37 @@
+﻿@using Common.ViewModels
+@model LoginViewModel
+@{
+    ViewBag.Title = "Bienvenido. Por favor inicie sesión.";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<!-- BEGIN LOGIN FORM -->
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h3 class="form-title">@ViewBag.Title</h3>
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control placeholder-no-fix", @autocomplete = "off", @placeholder = "Usuario", @name = "username" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix", @autocomplete = "off", @placeholder = "Contraseña", @name = "password" })
+        </div>
+    </div>
+    <br />
+    <div class="form-actions">
+        <button type="submit" class="btn red btn-block uppercase">Iniciar sesión</button>
+        <br />
+    </div>
+}
+<!-- END LOGIN FORM -->

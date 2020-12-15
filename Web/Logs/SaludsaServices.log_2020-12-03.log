@@ -1,0 +1,12 @@
+2020-12-03 23:20:12,591 [ERROR] l:102   Common.Utilities.EventLogUtil  EscribirLogInfoWeb               - System.ArgumentException: Log entry string is too long. A string written to the event log cannot exceed 32766 characters.
+   at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)
+   at System.Diagnostics.EventLogInternal.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at System.Diagnostics.EventLog.WriteEntry(String source, String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at System.Diagnostics.EventLog.WriteEntry(String source, String message, EventLogEntryType type, Int32 eventID)
+   at Common.Utilities.EventLogUtil.EscribirLogInfoWeb(String mensaje, Int32 EventId, String Origen) in C:\Users\mario\Documents\SaludSA\Common\Utilities\EventLogUtil.cs:line 98
+2020-12-03 23:20:56,718 [ERROR] l:102   Common.Utilities.EventLogUtil  EscribirLogInfoWeb               - System.ArgumentException: Log entry string is too long. A string written to the event log cannot exceed 32766 characters.
+   at System.Diagnostics.EventLogInternal.InternalWriteEvent(UInt32 eventID, UInt16 category, EventLogEntryType type, String[] strings, Byte[] rawData, String currentMachineName)
+   at System.Diagnostics.EventLogInternal.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at System.Diagnostics.EventLog.WriteEntry(String source, String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at System.Diagnostics.EventLog.WriteEntry(String source, String message, EventLogEntryType type, Int32 eventID)
+   at Common.Utilities.EventLogUtil.EscribirLogInfoWeb(String mensaje, Int32 EventId, String Origen) in C:\Users\mario\Documents\SaludSA\Common\Utilities\EventLogUtil.cs:line 98

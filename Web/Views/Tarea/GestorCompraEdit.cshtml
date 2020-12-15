@@ -1,0 +1,545 @@
+﻿
+@{
+    ViewBag.Title = "Cotizar y seleccionar proveedor";
+}
+
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Tarea")">Tareas pendientes</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_tarea" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="TareaCotizacionSeleccionProveedorEdit" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-check font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div ng-show="DataAccion != 'show'" class="actions">
+                    <a href="@Url.Action("Index", "Tarea")" class="btn btn-circle dark btn-outline">{{ TareaProcesada ? 'Regresar' : 'Cancelar' }} <i class="fa fa-times"></i></a>
+                    <a ng-click="TareaProcesada ? '' : Crear()" ng-show="!TareaProcesada" class="btn btn-circle green" href="javascript:;">Enviar <i class="fa fa-check"></i></a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal">
+
+                    <input id="SolicitudId" value="@ViewBag.Id" type="hidden" />
+                    <input id="TareaId" value="@ViewBag.tareaId" type="hidden" />
+                    <input id="Accion" value="@ViewBag.Accion" type="hidden" />
+
+                    <div class="form-body" style="padding-top:0">
+
+                        <div ng-show="Tarea.TareaPadre && Tarea.TareaPadre.Observacion" class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-warning">
+                                    <strong>{{ Tarea.TareaPadre.NombreCompletoResponsable }}:</strong> {{ Tarea.TareaPadre.Observacion }}
+                                </div>
+
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="note note-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <b>Solicitud No:</b> {{ Solicitud.NumeroSolicitud }}
+                                </div>
+                                <div class="col-md-6">
+                                    <b>Fecha de solicitud:</b> {{ Solicitud.FechaSolicitud }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Información del Solicitante</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Empresa <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.CompaniaDescripcion" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Email <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Email" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Cargo <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Cargo" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Nombre <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.NombreCompleto" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Departamento <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Departamento" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Ciudad <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.CiudadDescripcion" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Datos de la Compra</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Empresa para la que se compra <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <select ng-model="Solicitud.EmpresaParaLaQueSeCompra" disabled option="Metadatos.Empresas" ng-options="option.Nombre for option in Metadatos.Empresas track by option.Codigo" chosen></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Proveedor sugerido</label>
+                                            <div class="col-md-7">
+                                                <input ng-model="Solicitud.ProveedorSugerido" disabled maxlength="300" type="text" class="form-control input-sm mayusculas">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Frecuencia <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <select ng-model="Solicitud.Frecuencia" disabled chosen>
+                                                    <option value="Única">Única</option>
+                                                    <option value="Eventual">Eventual</option>
+                                                    <option value="Recurrente">Recurrente</option>
+                                                    <option value="Proveedor único">Proveedor único</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Monto estimado <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <input ng-model="Solicitud.MontoEstimado" disabled ng-dos-decimales type="text" class="form-control input-sm text-right">
+                                                <span class="help-block">El monto estimado debe incluir IVA.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div ng-show="Solicitud.SolicitanteObj.Departamento == 'GERENCIA DE MERCADEO' || Solicitud.SolicitanteObj.Departamento == 'GERENCIA DE MERCADEO Y VENTAS'" class="form-group">
+                                            <label class="control-label col-md-4">Producto mercadeo <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <select ng-model="Solicitud.ProductoMercadeo" disabled option="Metadatos.ProductosMercadeo" ng-options="option.Nombre for option in Metadatos.ProductosMercadeo track by option.Codigo" chosen></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Descripción <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <textarea ng-model="Solicitud.Descripcion" disabled maxlength="500" class="form-control input-sm mayusculas" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Requerimientos adjuntos</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.RequerimientosAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'requerimiento')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="(!Solicitud.RequerimientosAdjuntosPrevisualizar || Solicitud.RequerimientosAdjuntosPrevisualizar.length == 0) && (!Solicitud.RequerimientosAdjuntosSalvados || Solicitud.RequerimientosAdjuntosSalvados.length == 0)">
+                                                        <td colspan="2" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Bienes/Servicios a comprar</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive" style="min-height: 400px; overflow-y: scroll;">
+                                    <table class="table table-condensed table-bordered table-advance">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:50px; text-align:center;">
+                                                    <a ng-click="TareaProcesada ? '' : AdicionarDetalle()" ng-disabled="TareaProcesada" title="Adicionar bien/servicio" class="btn btn-circle blue btn-outline btn-xs" href="javascript:;"><i class="fa fa-plus"></i></a>
+                                                </th>
+                                                <th style="min-width:50px;" title="Compra internacional">COMEX</th>
+                                                <th style="min-width:100px;">Tipo <span class="font-red-mint">*</span></th>
+                                                <th style="min-width:350px;">Bien/Servicio <span class="font-red-mint">*</span></th>
+                                                <th style="min-width:150px;">Grupo</th>
+                                                <th style="min-width:200px;">Observación <span class="font-red-mint">*</span></th>
+                                                <th style="min-width:100px;">Cantidad <span class="font-red-mint">*</span></th>
+
+                                                <th style="min-width:100px;">Valor <span class="font-red-mint">*</span></th>
+                                                <th style="min-width:50px;">IVA <span class="font-red-mint">*</span></th>
+                                                <th style="min-width:100px;">Total <span class="font-red-mint">*</span></th>
+                                                <th style="min-width:300px;">Proveedor <span class="font-red-mint">*</span></th>
+
+                                                <th style="min-width:80px;">Distribución</th>
+                                                <th style="min-width:200px;">URL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="Detalle in Solicitud.Detalles">
+                                                <td style="padding:1px 0 0 0; text-align: center;">
+                                                    <a ng-click="TareaProcesada ? '' : EliminarDetalle(Detalle)" ng-disabled="TareaProcesada" title="Eliminar" class="btn btn-circle red btn-outline btn-xs" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                                </td>
+                                                <td class="text-align-center" style="padding:3px 0 0 0;">
+                                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                        <input ng-model="Detalle.CompraInternacional" ng-disabled="TareaProcesada" type="checkbox" class="checkboxes" />
+                                                        <span></span>
+                                                    </label>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <select ng-model="Detalle.Tipo" ng-change="CambiarCantidad(Detalle)" ng-disabled="TareaProcesada" chosen>
+                                                        <option value="0">Bien</option>
+                                                        <option value="2">Servicio</option>
+                                                    </select>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <div ng-show="Detalle.Tipo == '0'">
+                                                        <select ng-model="Detalle.ProductoBien" ng-disabled="TareaProcesada" option="Metadatos.Bienes" ng-options="option.Nombre for option in Metadatos.Bienes track by option.CodigoArticulo" chosen></select>
+                                                    </div>
+                                                    <div ng-show="Detalle.Tipo == '2'">
+                                                        <select ng-model="Detalle.ProductoServicio" ng-disabled="TareaProcesada" option="Metadatos.Servicios" ng-options="option.Nombre for option in Metadatos.Servicios track by option.CodigoArticulo" chosen></select>
+                                                    </div>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <div ng-show="Detalle.Tipo == '0'">
+                                                        <input ng-model="Detalle.ProductoBien.Grupo" title="{{ Detalle.ProductoBien.Grupo }}" type="text" disabled class="form-control input-sm mayusculas" />
+                                                    </div>
+                                                    <div ng-show="Detalle.Tipo == '2'">
+                                                        <input ng-model="Detalle.ProductoServicio.Grupo" title="{{ Detalle.ProductoServicio.Grupo }}" type="text" disabled class="form-control input-sm mayusculas" />
+                                                    </div>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <input ng-model="Detalle.Observacion" title="{{ Detalle.Observacion }}" ng-disabled="TareaProcesada" ng-maxlength-indicator maxlength="500" type="text" class="form-control input-sm mayusculas" />
+                                                </td>
+                                                <td style="padding:0">
+                                                    <div ng-show="Detalle.Tipo == '0'">
+                                                        <input ng-model="Detalle.Cantidad" ng-blur="AbandonoCantidadBien(Detalle)" ng-change="ActualizarTotal(Detalle)" ng-disabled="TareaProcesada" ng-entero type="text" class="form-control input-sm text-right" />
+                                                    </div>
+                                                    <div ng-show="Detalle.Tipo == '2'">
+                                                        <input ng-model="Detalle.Cantidad" ng-change="ActualizarTotal(Detalle)" ng-disabled="TareaProcesada" ng-dos-decimales type="text" class="form-control input-sm text-right" />
+                                                    </div>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <input ng-model="Detalle.Valor" ng-change="ActualizarTotal(Detalle)" ng-disabled="TareaProcesada" ng-dos-decimales type="text" class="form-control input-sm text-right" />
+                                                </td>
+                                                <td style="padding:0">
+                                                    <select ng-model="Detalle.Impuesto" ng-change="ActualizarTotal(Detalle)" ng-disabled="TareaProcesada" option="Metadatos.Impuestos" ng-options="option.Descripcion for option in Metadatos.Impuestos track by option.Codigo" chosen></select>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <input ng-model="Detalle.Total" disabled ng-dos-decimales type="text" class="form-control input-sm text-right" />
+                                                </td>
+                                                <td style="padding:0">
+                                                    <div style="width: 90%; float: left;">
+                                                        <select ng-model="Detalle.Proveedor" ng-disabled="TareaProcesada" option="Metadatos.Proveedores" ng-options="('(' + option.TipoIdentificacion + '-' + option.Identificacion + ') ' + option.Nombre) for option in Metadatos.Proveedores track by option.Identificacion" chosen></select>
+                                                    </div>
+                                                    <div style="width: 10%; float: left; text-align: center;">
+                                                        <a ng-click="(!Detalle.Proveedor || !Detalle.Proveedor.Identificacion) ? '' : CopiarProveedorClipBoard(Detalle.Proveedor)" ng-disabled="!Detalle.Proveedor || !Detalle.Proveedor.Identificacion" title="Copiar proveedor al portapapeles" href="javascript:;"><i class="fa fa-copy"></i></a>
+                                                    </div>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <a ng-click="AdicionarDistribucion(Detalle)" class="btn default btn-xs" style="height: 100%; width: 100%; padding:3px;" href="javascript:;"><i class="fa fa-plus-square-o {{ ((Detalle.PlantillaDistribucionDetalle && Detalle.PlantillaDistribucionDetalle.length) > 0 ? 'font-red-mint' : '') }}"></i></a>
+                                                </td>
+                                                <td style="padding:0">
+                                                    <input ng-model="Detalle.Url" ng- ng-dblclick="AbrirUrl(Detalle)" ng-disabled="TareaProcesada" ng-maxlength-indicator maxlength="300" title="Doble clic para abrir url" type="text" class="form-control input-sm" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-align-reverse" colspan="9"><b>Total:</b></td>
+                                                <td style="padding:0">
+                                                    <input ng-model="TotalDetalles" disabled type="text" class="form-control input-sm text-right" />
+                                                </td>
+                                                <td colspan="3"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Cotizaciones adjuntos</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12 text-align-center">
+                                            <label ng-disabled="TareaProcesada" for="FileCotizacionesAdjuntos" class="btn blue" href="javascript:;">
+                                                <i class="fa fa-plus"></i> Agregar Archivos
+                                            </label>
+
+                                            <input ng-show="false" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.bmp,.dib,.jpe,.jpeg,.jpg,.png,.tif,.tiff" ng-adjuntar-archivos-cotizaciones-adjuntos="Solicitud.CotizacionesAdjuntos" ng-disabled="TareaProcesada" id="FileCotizacionesAdjuntos" type="file" multiple />
+                                        </div>
+
+                                        <br /><br />
+
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th width="8%"></th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.CotizacionesAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td style="text-align:center">
+                                                            <a ng-click="TareaProcesada ? '' : EliminarCotizacionAdjuntoSalvado(adjunto)" title="Eliminar" ng-disabled="TareaProcesada" class="btn btn-circle red btn-outline btn-xs" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                                        </td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'cotización')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="!Solicitud.CotizacionesAdjuntosSalvados || Solicitud.CotizacionesAdjuntosSalvados.length == 0">
+                                                        <td colspan="3" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Evaluaciones adjuntos</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12 text-align-center">
+                                            <label ng-disabled="TareaProcesada" for="FileEvaluacionesAdjuntos" class="btn blue" href="javascript:;">
+                                                <i class="fa fa-plus"></i> Agregar Archivos
+                                            </label>
+
+                                            <input ng-show="false" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.bmp,.dib,.jpe,.jpeg,.jpg,.png,.tif,.tiff" ng-adjuntar-archivos-evaluaciones-adjuntos="Solicitud.EvaluacionesAdjuntos" ng-disabled="TareaProcesada" id="FileEvaluacionesAdjuntos" type="file" multiple />
+                                        </div>
+
+                                        <br /><br />
+
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-condensed table-bordered table-advance">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="8%">No.</th>
+                                                        <th width="8%"></th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="(index, adjunto) in Solicitud.EvaluacionesAdjuntosSalvados">
+                                                        <td>{{ index + 1 }}</td>
+                                                        <td style="text-align:center">
+                                                            <a ng-click="TareaProcesada ? '' : EliminarEvaluacionAdjuntoSalvado(adjunto)" title="Eliminar" ng-disabled="TareaProcesada" class="btn btn-circle red btn-outline btn-xs" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                                        </td>
+                                                        <td><a ng-click="DescargarAdjunto(adjunto, 'evaluación')" href="javascript:;">{{ adjunto.Nombre }}</a></td>
+                                                    </tr>
+                                                    <tr ng-show="!Solicitud.EvaluacionesAdjuntosSalvados || Solicitud.EvaluacionesAdjuntosSalvados.length == 0">
+                                                        <td colspan="3" class="text-align-center"><i class="fa fa-warning text-warning"></i> No se han subido archivos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Acciones Disponibles</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Comentario</label>
+                                            <div class="col-md-8">
+                                                <textarea ng-model="Observacion" maxlength="300" ng-disabled="TareaProcesada" class="form-control mayusculas" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <div class="col-md-8 col-md-offset-4">
+                                                <label class="mt-checkbox mt-checkbox-outline">
+                                                    <input ng-model="RetornaAJefeInmediato" ng-disabled="TareaProcesada" type="checkbox"> Retorna al jefe inmediato
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Historial de tareas</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-bordered table-advance">
+                                        <thead>
+                                            <tr>
+                                                <th><i class="fa fa-flag-o"></i></th>
+                                                <th>No.</th>
+                                                <th><i class="fa fa-tasks"></i> Actividad</th>
+                                                <th><i class="fa fa-user-secret"></i> Responsable</th>
+                                                <th><i class="fa fa-truck"></i> Proveedor</th>
+                                                <th>Recepción</th>
+                                                <th><i class="fa fa-calendar"></i> Creación</th>
+                                                <th><i class="fa fa-calendar"></i> Procesamiento</th>
+                                                <th> <i class="fa fa-cogs"></i> Acción</th>
+                                                <th>Observación</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="(Index, Tarea) in Solicitud.Tareas">
+                                                <td>
+                                                    <i ng-show="Tarea.TiempoColor == 1" class="fa fa-flag font-green-sharp"></i>
+                                                    <i ng-show="Tarea.TiempoColor == 2" class="fa fa-flag text-warning"></i>
+                                                    <i ng-show="Tarea.TiempoColor == 3" class="fa fa-flag font-red-mint"></i>
+                                                </td>
+                                                <td>{{ Index + 1 }}</td>
+                                                <td>{{ Tarea.Actividad }}</td>
+                                                <td>{{ Tarea.NombreCompletoResponsable }}</td>
+                                                <td>{{ Tarea.NombreProveedor }}</td>
+                                                <td>{{ Tarea.NumeroRecepcion == 0 ? '' : Tarea.NumeroRecepcion }}</td>
+                                                <td>{{ Tarea.FechaCreacion | json_js_datetime }}</td>
+                                                <td>{{ Tarea.FechaProcesamiento | json_js_datetime }}</td>
+                                                <td>{{ Tarea.Accion }}</td>
+                                                <td>{{ Tarea.Observacion }}</td>
+                                            </tr>
+                                            <tr ng-show="Solicitud.Tareas.length == 0">
+                                                <td class="text-center" colspan="10"><i class="fa fa-warning text-warning"></i> No existen elementos para mostrar</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-show="DataAccion != 'show'" class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a href="@Url.Action("Index", "Tarea")" class="btn btn-circle dark btn-outline">{{ TareaProcesada ? 'Regresar' : 'Cancelar' }} <i class="fa fa-times"></i></a>
+                                        <a ng-click="TareaProcesada ? '' : Crear()" ng-show="!TareaProcesada" class="btn btn-circle green" href="javascript:;">Enviar <i class="fa fa-check"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"> </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_platilla_distribucion.*@
+    <script src="~/AngularJS/app/PlantillaDistribucion/controllers/PlantillaDistribucionCreate.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_tarea.*@
+    <script src="~/AngularJS/app/Tarea/controllers/TareaCotizacionSeleccionProveedorEdit.js"></script>
+}

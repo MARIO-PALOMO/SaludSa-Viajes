@@ -1,0 +1,9 @@
+﻿<OrdenCompraLineaViewModel>
+  <Codigo>S_SERV_DENTAL</Codigo>
+  <Descripcion>SERVICIOS DENTALES</Descripcion>
+  <Observacion>ALCANCE A LA ORDEN DE COMPRA REFERENCIA OC #33684 - SERVICIOS DENTALES PRODUCTOS INDIVIDUAL,ONCOLOGICO Y EXPERIENCE, ESTOS SERVICIOS NO GRABAN IVA, EN NOVIEMBRE HUBO CAMBIO EN LOS PRECIOS.</Observacion>
+  <Cantidad>6520.00</Cantidad>
+  <PrecioUnitario>1.00</PrecioUnitario>
+  <Iva>0.00</Iva>
+  <Importe>6520.00</Importe>
+</OrdenCompraLineaViewModel>

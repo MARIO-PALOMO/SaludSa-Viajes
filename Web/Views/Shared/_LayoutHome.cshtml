@@ -1,0 +1,200 @@
+﻿@using Common.Utilities;
+@{
+    ContenedorVariablesSesion sesion = Session["vars"] as ContenedorVariablesSesion;
+    Data.Context.ApplicationDbContext db = new Data.Context.ApplicationDbContext();
+    var CantTareasPendientes = Logic.TareaBLL.ObtenerCantidadTareasPendientes(sesion, db);
+    var TareasPendientes = Logic.TareaBLL.ObtenerTareas(sesion, db);
+
+    var FueraOficina = Logic.FueraOficinaBLL.EstaFueraOficina(sesion, db);
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title | Sistema de Gestión de Compras</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @Styles.Render("~/Content/global_mandatory_styles_css")
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @RenderSection("pageLevelPluginsStyles", required: false)
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    @Styles.Render("~/Content/theme_global_styles_css")
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    @Styles.Render("~/Content/theme_layout_styles_css")
+    <!-- END THEME LAYOUT STYLES -->
+    <!-- BEGIN PERSONAL STYLES -->
+    @Styles.Render("~/Content/personal_styles_css")
+    <!-- END PERSONAL STYLES -->
+    <!-- BEGIN CORE PLUGINS -->
+    @Scripts.Render("~/bundles/core_plugins_js")
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PERSONAL PLUGINS -->
+    @Scripts.Render("~/bundles/personal_plugins_js")
+    <!-- END PERSONAL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @RenderSection("pageLevelPlugins", required: false)
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    @Scripts.Render("~/bundles/theme_global_scripts_js")
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    @RenderSection("pageLevelScripts", required: false)
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    @Scripts.Render("~/bundles/theme_layout_scripts_js")
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- BEGIN ANGULARJS FRAMEWORK -->
+    @Scripts.Render("~/bundles/angular_js")
+    <!-- END ANGULARJS FRAMEWORK -->
+    <!-- BEGIN PERSONAL SCRIPTS -->
+    @RenderSection("personalScripts", required: false)
+    @RenderSection("Scripts", required: false)
+    <!-- END PERSONAL SCRIPTS -->
+
+    <style>
+        /*.page-content-wrapper .page-content {
+            margin-left: 0 !important;
+        }
+
+        .icon-btn {
+            height: 100px !important;
+            min-width: 150px !important;
+            padding: 24px 0 0 !important;
+        }
+
+        .icon-btn > div {
+            font-size: 140% !important;
+            margin-top: 10px;
+        }
+
+        .icon-btn > i {
+            font-size: 240% !important;
+        }*/
+    </style>
+
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body id="block_body" class="page-sidebar-closed-hide-logo page-container-bg-solid page-full-width">
+    <div class="page-wrapper">
+        <div class="page-header navbar">
+            <div class="page-header-inner ">
+                <div class="page-logo">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img style="max-height: 30px; margin: 10px 0 0;" src="~/Content/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
+                    </a>
+                </div>
+
+                <!--************************************************-->
+                <div class="hor-menu hidden-sm hidden-xs">
+                    <ul class="nav navbar-nav">
+                        <li class="classic-menu-dropdown" aria-haspopup="true">
+                            <a href="@Url.Action("Index", "SolicitudCompra")">
+                                Compras
+                            </a>
+                        </li>
+                        <li class="classic-menu-dropdown" aria-haspopup="true">
+                            <a href="@Url.Action("Index", "SolicitudPago")">
+                                Pagos
+                            </a>
+                        </li>
+                        <li class="classic-menu-dropdown" aria-haspopup="true">
+                            <a href="@Url.Action("Index", "Viaje")">
+                                Viajes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--************************************************-->
+
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-grid"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="@Url.Action("Index", "PlantillaDistribucion")">
+                                        Plantillas de distribución
+                                    </a>
+                                </li>
+                                @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_ROLES_ADMINISTRATIVOS))
+                                {
+                                <li>
+                                    <a href="@Url.Action("Index", "RolAdministrativo")">
+                                        Roles administrativos
+                                    </a>
+                                </li>
+                                }
+                            </ul>
+                        </li>
+
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                @if (sesion != null && sesion.usuario != null)
+                                {
+                                    if (FueraOficina)
+                                    {
+                                        <span class="username username-hide-on-mobile font-red-mint">@(sesion.usuario.NombreCompleto + " (" + sesion.usuario.Usuario + ")")</span>
+                                        <i class="fa fa-user font-red-mint" style="font-size:150%; position:relative; top:2px"></i>
+                                    }
+                                    else
+                                    {
+                                        <span class="username username-hide-on-mobile">@(sesion.usuario.NombreCompleto + " (" + sesion.usuario.Usuario + ")")</span>
+                                        <i class="fa fa-user" style="font-size:150%; position:relative; top:2px"></i>
+                                    }
+                                }
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="@Url.Action("Index", "FueraOficina")">
+                                        <i class="icon-user-unfollow"></i> Modo fuera de oficina
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("LogOff", "Account")">
+                                        <i class="icon-logout"></i> Salir
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <div class="page-container">
+
+            @{Html.RenderPartial("_SideBarHome");}
+
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--[if lt IE 9]>
+    <script src="~/Content/global/plugins/respond.min.js"></script>
+    <script src="~/Content/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+</body>
+</html>

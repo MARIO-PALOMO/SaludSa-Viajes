@@ -1,0 +1,52 @@
+﻿<div class="modal-content" id="modal_email_pendiente_show" ng-modal-draggable="modal_email_pendiente_show">
+    <div class="modal-header">
+        <button ng-click="Cerrar()" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">
+            <i class="icon-envelope"></i>
+            {{ Data.TituloPag }}
+        </h4>
+    </div>
+    <div class="modal-body form">
+        <form class="form-horizontal">
+            <div class="form-body">
+                <div class="form-group" style="padding: 3px 0 !important; border-bottom: 1px solid #ccc;">
+                    <div class="col-md-12">
+                        <b>Para:</b>
+                        <span ng-repeat="Destinatario in Email.EmailsDestino">{{ Destinatario.Nombre + ' (' + Destinatario.Direccion + ')' }}; </span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 3px 0 !important; border-bottom: 1px solid #ccc">
+                    <div class="col-md-12">
+                        <b>CC:</b>
+                        <span ng-repeat="Copia in Email.EmailsCopia">{{ Copia.Nombre + ' (' + Copia.Direccion + ')' }}; </span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 3px 0 !important; border-bottom: 1px solid #ccc">
+                    <div class="col-md-12">
+                        <b>Asunto:</b>
+                        {{ Email.Asunto }}
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 3px 0 !important">
+                    <div class="col-md-12" style="background-color: #fff; border: 1px solid #ccc; height: 300px; overflow: auto;">
+                        <div ng-bind-html="Email.Cuerpo"></div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 3px 0 !important">
+                    <div class="alert alert-danger">
+                        {{ Email.Razon }}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <a ng-click="Cerrar()" href="javascript:;" class="btn dark btn-outline" data-dismiss="modal">Cerrar <i class="fa fa-times"></i></a>
+        <a ng-click="Enviar()" href="javascript:;" class="btn green">Enviar <i class="fa fa-send"></i></a>
+    </div>
+</div>

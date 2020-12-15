@@ -1,0 +1,189 @@
+﻿<div class="modal-content" id="modal_data_warehouse_pago_create" ng-modal-draggable="modal_data_warehouse_pago_create">
+    <div class="modal-header">
+        <button ng-click="Cerrar()" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">
+            <i ng-show="Data.Accion == 'create'" class="icon-plus"></i>
+            <i ng-show="Data.Accion == 'edit'" class="icon-note"></i>
+            <i ng-show="Data.Accion == 'detail'" class="icon-eye"></i>
+            {{ Data.TituloPag }}
+        </h4>
+    </div>
+    <div class="modal-body form">
+        <form action="#" class="form-horizontal">
+            <div class="form-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-12" style="text-align: left">Nombre <span class="font-red-mint">*</span></label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-12" style="text-align: left">Filtros <span class="font-red-mint">*</span></label>
+                            <div class="col-md-12">
+                                <div style="height: 150px; overflow-y: auto;border: 1px solid #ccc; padding: 5px 10px 0 10px; margin-top: 3px;">
+                                    <div class="mt-checkbox-list">
+                                        <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                            Todos
+                                            <input type="checkbox" />
+                                            <span></span>
+                                        </label>
+                                        <label ng-repeat="Filtro in Metadatos.Filtros" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                            {{ Filtro.Nombre }}
+                                            <input type="checkbox" />
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Columnas</b></h3>
+                            </div>
+                            <div class="panel-body" style="padding: 0">
+                                <div class="tabbable-custom nav-justified" style="margin-bottom: 0">
+                                    <ul class="nav nav-tabs nav-justified">
+                                        <li class="active">
+                                            <a href="#tab_1_1_1" data-toggle="tab"> Solicitud </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_1_1_2" data-toggle="tab"> Detalle solicitud </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_1_1_3" data-toggle="tab"> Factura </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_1_1_4" data-toggle="tab"> Detalle factura </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_1_1_5" data-toggle="tab"> Detalle distribución </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_1_1_6" data-toggle="tab"> Detalle aprobación </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" style="padding: 0">
+                                        <div class="tab-pane active" id="tab_1_1_1">
+                                            <div style="height: 150px; overflow-y: auto; padding: 0 10px;">
+                                                <div class="mt-checkbox-list">
+                                                    <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        Todos
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                    <label ng-repeat="Columna in Metadatos.Columnas" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        {{ Columna.Nombre }}
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_1_1_2">
+                                            <div style="height: 150px; overflow-y: auto; padding: 0 10px;">
+                                                <div class="mt-checkbox-list">
+                                                    <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        Todos
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                    <label ng-repeat="Columna in Metadatos.Columnas" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        {{ Columna.Nombre }}
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_1_1_3">
+                                            <div style="height: 150px; overflow-y: auto; padding: 0 10px;">
+                                                <div class="mt-checkbox-list">
+                                                    <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        Todos
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                    <label ng-repeat="Columna in Metadatos.Columnas" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        {{ Columna.Nombre }}
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_1_1_4">
+                                            <div style="height: 150px; overflow-y: auto; padding: 0 10px;">
+                                                <div class="mt-checkbox-list">
+                                                    <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        Todos
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                    <label ng-repeat="Columna in Metadatos.Columnas" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        {{ Columna.Nombre }}
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_1_1_5">
+                                            <div style="height: 150px; overflow-y: auto; padding: 0 10px;">
+                                                <div class="mt-checkbox-list">
+                                                    <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        Todos
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                    <label ng-repeat="Columna in Metadatos.Columnas" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        {{ Columna.Nombre }}
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_1_1_6">
+                                            <div style="height: 150px; overflow-y: auto; padding: 0 10px;">
+                                                <div class="mt-checkbox-list">
+                                                    <label ng-show="Metadatos.Filtros && Metadatos.Filtros.length > 0" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        Todos
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                    <label ng-repeat="Columna in Metadatos.Columnas" class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 5px">
+                                                        {{ Columna.Nombre }}
+                                                        <input type="checkbox" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="Cerrar()" href="javascript:;" class="btn dark btn-outline" data-dismiss="modal">Cancelar <i class="fa fa-times"></i></a>
+        <a ng-click="Data.Accion == 'detail' ? '' : Crear()" ng-disabled="Data.Accion == 'detail'" href="javascript:;" class="btn green">Guardar <i class="fa fa-save"></i></a>
+    </div>
+</div>

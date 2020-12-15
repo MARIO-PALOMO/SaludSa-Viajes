@@ -1,0 +1,51 @@
+﻿<div class="modal-content" id="modal_impuesto_pago_create" ng-modal-draggable="modal_impuesto_pago_create">
+    <div class="modal-header">
+        <button ng-click="Cerrar()" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">
+            <i ng-show="Data.Accion == 'create'" class="icon-plus"></i>
+            <i ng-show="Data.Accion == 'edit'" class="icon-note"></i>
+            <i ng-show="Data.Accion == 'detail'" class="icon-eye"></i>
+            {{ Data.TituloPag }}
+        </h4>
+    </div>
+    <div class="modal-body form">
+        <form action="#" class="form-horizontal">
+            <div class="form-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Descripción <span class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <input ng-model="Impuesto.Descripcion" ng-disabled="Data.Accion == 'detail'" maxlength="100" type="text" class="form-control input-sm mayusculas">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Porcentaje <span class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <input ng-model="Impuesto.Porcentaje" ng-disabled="Data.Accion == 'detail'" ng-dos-decimales type="text" class="form-control input-sm text-right">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Compensación  <span class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <input ng-model="Impuesto.Compensacion" ng-disabled="Data.Accion == 'detail'" ng-dos-decimales type="text" class="form-control input-sm text-right">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Estado  <span class="font-red-mint">*</span></label>
+                            <div class="col-md-8">
+                                <select ng-model="Impuesto.Estado" ng-disabled="Data.Accion == 'detail'" option="Metadatos.Estados" ng-options="option.Descripcion for option in Metadatos.Estados track by option.Id" chosen></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="Cerrar()" href="javascript:;" class="btn dark btn-outline" data-dismiss="modal">Cancelar <i class="fa fa-times"></i></a>
+        <a ng-click="Data.Accion == 'detail' ? '' : Crear()" ng-disabled="Data.Accion == 'detail'" href="javascript:;" class="btn green">Guardar <i class="fa fa-save"></i></a>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Service.dll.config
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Service.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Service.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Common.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Controller.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\RestSharp.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\log4net.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Model.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Rest.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Logic.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Data.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Newtonsoft.Json.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\EntityFramework.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\CrystalDecisions.Shared.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Common.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Common.dll.config
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Controller.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\RestSharp.xml
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\log4net.xml
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Model.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Rest.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Logic.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Logic.dll.config
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Data.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Data.dll.config
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Newtonsoft.Json.xml
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\EntityFramework.xml
+C:\Users\mario\Documents\SaludSA\Travel.Service\obj\Debug\Travel.Service.csprojAssemblyReference.cache
+C:\Users\mario\Documents\SaludSA\Travel.Service\obj\Debug\Travel.Service.csproj.CoreCompileInputs.cache
+C:\Users\mario\Documents\SaludSA\Travel.Service\obj\Debug\Travel.Service.csproj.CopyComplete
+C:\Users\mario\Documents\SaludSA\Travel.Service\obj\Debug\Travel.Service.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\obj\Debug\Travel.Service.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Entity.dll
+C:\Users\mario\Documents\SaludSA\Travel.Service\bin\Travel.Entity.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Service.dll.config
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Service.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Service.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Common.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Controller.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Entity.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\RestSharp.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\log4net.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Model.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Rest.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Logic.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Data.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Newtonsoft.Json.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\EntityFramework.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\CrystalDecisions.Shared.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Common.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Common.dll.config
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Controller.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Entity.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\RestSharp.xml
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\log4net.xml
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Travel.Model.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Rest.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Logic.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Logic.dll.config
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Data.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Data.dll.config
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\Newtonsoft.Json.xml
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\bin\EntityFramework.xml
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.csprojAssemblyReference.cache
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.csproj.CoreCompileInputs.cache
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.csproj.CopyComplete
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.pdb

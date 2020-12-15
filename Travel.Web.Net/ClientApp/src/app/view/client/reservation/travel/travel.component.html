@@ -1,0 +1,165 @@
+<div style="padding: 20px;">
+
+  <div class="row">
+    <div class="col-md-6">
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <label class="label-text"><b>Fecha de Inicio</b></label>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <div class="form-group">
+              <kendo-datepicker [format]="'yyyy-MM-dd'" [min]="firstDateRange" [(ngModel)]="dtTravel.startDate" [navigation]="false" style="width: 100% !important;" (ngModelChange)="validateDate(dtTravel.startDate)">
+              </kendo-datepicker>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <div class="form-group">
+              <kendo-timepicker [format]="'HH:mm'" [(ngModel)]="dtTravel.startDateTime" style="width: 100% !important;"></kendo-timepicker>
+            </div>
+          </div>
+        </div>        
+      </div>
+
+      <div>
+        <label class="label-text"><b>Tipo de Viaje</b></label>
+        <div [ngClass]="vlTravel.travelType == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Tipo de Viaje">
+              <span class="las la-globe form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [(ngModel)]="dtTravel.travelType" class="form-control regular-font" [data]="lstTipoViaje" (ngModelChange)="validations()">
+          </kendo-dropdownlist>
+        </div>
+        <div *ngIf="vlTravel.travelType == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>¿Requiere Hospedaje?</b></label>
+        <div [ngClass]="vlTravel.requiresLodging == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Requiere Hospedaje">
+              <span class="las la-hotel form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [(ngModel)]="dtTravel.requiresLodging" class="form-control regular-font" (ngModelChange)="validations()"
+            [data]="lstHospedaje" disabled="{{ dtTravel.block }}">
+          </kendo-dropdownlist>
+        </div>
+        <div *ngIf="vlTravel.requiresLodging == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>¿Es viaje por capacitación?</b></label>
+        <div [ngClass]="vlTravel.trainingTrip == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Es viaje por capacitación">
+              <span class="las la-pen form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [(ngModel)]="dtTravel.trainingTrip" class="form-control regular-font" (ngModelChange)="getCalculations()"
+            [data]="lstCapacitacion">
+          </kendo-dropdownlist>
+        </div>
+        <div *ngIf="vlTravel.trainingTrip == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="label-text"><b>Fecha de Finalización</b></label>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <div class="form-group">
+              <kendo-datepicker [format]="'yyyy-MM-dd'" [min]="secondDataRange" [(ngModel)]="dtTravel.endDate" [navigation]="false" style="width: 100% !important;" (ngModelChange)="validateNightsTravel(dtTravel.startDate, dtTravel.endDate)">
+              </kendo-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <div class="form-group">
+              <kendo-timepicker [format]="'HH:mm'" [(ngModel)]="dtTravel.endDateTime" style="width: 100% !important;"></kendo-timepicker>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="label-text"><b>Nombre Corto</b></label>
+        <div [ngClass]="vlTravel.shortName == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Nombre Corto">
+              <span class="las la-user-circle form-icon"></span>
+            </span>
+          </div>
+          <input type="text" [(ngModel)]="dtTravel.shortName" class="form-control regular-font"
+            placeholder="Nombre Corto" aria-describedby="Nombre Corto" (ngModelChange)="validations()"
+            (keyup)="dtTravel.shortName = global.formatField(dtTravel.shortName, 'abcdefghijklmnñopqrstuvwxyzáéíóúÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ ', 100, 1)">
+        </div>
+        <div *ngIf="vlTravel.shortName == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Número de Noches</b></label>
+        <div [ngClass]="'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Número de Noches">
+              <span class="las la-moon form-icon"></span>
+            </span>
+          </div>
+          <!-- <kendo-dropdownlist [(ngModel)]="dtTravel.numbersNight" class="form-control regular-font" [data]="lstNoches" (ngModelChange)="validations()">
+          </kendo-dropdownlist> -->
+
+          <input type="text" [(ngModel)]="dtTravel.numbersNight" class="form-control regular-font"
+            placeholder="Número de Noches" aria-describedby="Número de Noches" (ngModelChange)="validations()" readonly>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <div>
+        <label class="label-text"><b>Motivo del Viaje</b></label>
+        <div [ngClass]="vlTravel.reasonTrip == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Motivo del Viaje">
+              <span class="las la-file-alt form-icon"></span>
+            </span>
+          </div>
+          <input type="text" [(ngModel)]="dtTravel.reasonTrip" class="form-control regular-font"
+            placeholder="Motivo del Viaje" aria-describedby="Motivo del Viaje" (ngModelChange)="validations()"
+            (keyup)="dtTravel.reasonTrip = global.formatField(dtTravel.reasonTrip, 'abcdefghijklmnñopqrstuvwxyzáéíóúÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ ', 100, 1)">
+        </div>
+      </div>
+      <div *ngIf="vlTravel.reasonTrip == true">
+        <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+          requerido</span>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

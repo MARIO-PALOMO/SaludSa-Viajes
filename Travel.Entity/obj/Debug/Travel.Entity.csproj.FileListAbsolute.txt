@@ -1,0 +1,12 @@
+C:\Users\mario\Documents\SaludSA\Travel.Entity\bin\Debug\Travel.Entity.dll
+C:\Users\mario\Documents\SaludSA\Travel.Entity\bin\Debug\Travel.Entity.pdb
+C:\Users\mario\Documents\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.csprojAssemblyReference.cache
+C:\Users\mario\Documents\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.csproj.CoreCompileInputs.cache
+C:\Users\mario\Documents\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.dll
+C:\Users\mario\Documents\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\bin\Debug\Travel.Entity.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\bin\Debug\Travel.Entity.pdb
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.csprojAssemblyReference.cache
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.csproj.CoreCompileInputs.cache
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.dll
+C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.pdb

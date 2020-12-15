@@ -1,0 +1,38 @@
+<div style="padding: 20px;">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <label class="label-text"><b>Hotel</b></label>
+        <div
+          [ngClass]="vlHotel.hotel == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Destino">
+              <span class="las la-building form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [data]="lstHotels" [textField]="'NombreHotel'" [valueField]="'IdHotel'"
+            [(ngModel)]="dtHotelSelected" class="form-control regular-font" (ngModelChange)="selectionData()">
+          </kendo-dropdownlist>
+        </div>
+        <div *ngIf="vlHotel.hotel == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <label class="label-text"><b>Tarifa</b></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="">
+              <span class="las la-dollar-sign form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Tarifa" aria-describedby=""
+            [(ngModel)]="dtHotel.rate" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

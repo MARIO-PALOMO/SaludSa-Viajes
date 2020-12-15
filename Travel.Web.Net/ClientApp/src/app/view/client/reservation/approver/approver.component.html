@@ -1,0 +1,18 @@
+<div class="contact-form-action">
+  <div class="row" style="padding-right: 15px;">
+    <div class="col-md-12">
+      <label class="label-text"><b>Jefe de Área</b></label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text blank" id="Empresa">
+            <span class="las la-building form-icon"></span>
+          </span>
+        </div>
+        <kendo-dropdownlist class="form-control regular-font" [data]="lstBossGroupFilter" [filterable]="true"
+          [textField]="'NombreCompleto'" [valueField]="'Usuario'" [valuePrimitive]="true"
+          (filterChange)="filterBoss($event)">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+  </div>
+</div>

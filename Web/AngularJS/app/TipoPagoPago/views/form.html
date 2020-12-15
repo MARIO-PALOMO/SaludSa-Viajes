@@ -1,0 +1,61 @@
+﻿<div class="modal-content" id="modal_tipo_pago_pago_create" ng-modal-draggable="modal_tipo_pago_pago_create">
+    <div class="modal-header">
+        <button ng-click="Cerrar()" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">
+            <i ng-show="Data.Accion == 'create'" class="icon-plus"></i>
+            <i ng-show="Data.Accion == 'edit'" class="icon-note"></i>
+            <i ng-show="Data.Accion == 'detail'" class="icon-eye"></i>
+            {{ Data.TituloPag }}
+        </h4>
+    </div>
+    <div class="modal-body form">
+        <form action="#" class="form-horizontal">
+            <div class="form-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Empresa <span class="font-red-mint">*</span></label>
+                            <div class="col-md-9">
+                                <select ng-model="TipoPago.Empresa" ng-change="CambiarEmpresa()" ng-disabled="Data.Accion != 'create' || Data.DesdeSolicitud" option="Metadatos.Empresas" ng-options="option.Nombre for option in Metadatos.Empresas track by option.Codigo" chosen></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Catalogo de pagos <span class="font-red-mint">*</span></label>
+                            <div class="col-md-9">
+                                <select ng-model="TipoPago.CuentaContable" ng-disabled="Data.Accion == 'detail'" option="Metadatos.CuentasContable" ng-options="(option.Codigo + ' (' + option.Nombre + ')' + ' (' + option.Tipo + ')') for option in Metadatos.CuentasContable track by option.Codigo" chosen></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Referencia <span class="font-red-mint">*</span></label>
+                            <div class="col-md-9">
+                                <textarea ng-model="TipoPago.Referencia" ng-disabled="Data.Accion == 'detail'" maxlength="100" class="form-control mayusculas" style="margin-top:3px"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Es reembolso</label>
+                            <div class="col-md-9">
+                                <label class="mt-checkbox mt-checkbox-outline" style="margin-top: 3px;">
+                                    <input ng-model="TipoPago.EsReembolso" ng-disabled="Data.Accion == 'detail'" type="checkbox">
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Estado  <span class="font-red-mint">*</span></label>
+                            <div class="col-md-9">
+                                <select ng-model="TipoPago.Estado" ng-disabled="Data.Accion == 'detail'" option="Metadatos.Estados" ng-options="option.Descripcion for option in Metadatos.Estados track by option.Id" chosen></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="Cerrar()" href="javascript:;" class="btn dark btn-outline" data-dismiss="modal">Cancelar <i class="fa fa-times"></i></a>
+        <a ng-click="Data.Accion == 'detail' ? '' : Crear()" ng-disabled="Data.Accion == 'detail'" href="javascript:;" class="btn green">Guardar <i class="fa fa-save"></i></a>
+    </div>
+</div>

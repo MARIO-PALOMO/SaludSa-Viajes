@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Reasignación de originador";
+}
+
+<link href="~/AngularJS/lib/angular-datatables.bootstrap/datatables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_reasignacion_originador_compra" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="ReasignacionOriginadorCompraIndex" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div class="actions">
+
+                </div>
+            </div>
+            <div class="portlet-body">
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Originadores</b></h3>
+                            </div>
+                            <div class="panel-body form">
+                                <form class="horizontal-form padding-5">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Originador actual</label>
+                                            <select ng-model="ResponsableActual" ng-change="ObtenerSolicitudesPorResponsable()" option="Metadatos.Usuarios" ng-options="option.NombreCompleto for option in Metadatos.Usuarios track by option.Usuario" chosen></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Originador nuevo</label>
+                                            <select ng-model="ResponsableNuevo" option="Metadatos.Usuarios" ng-options="option.NombreCompleto for option in Metadatos.Usuarios track by option.Usuario" chosen></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 text-align-center margin-top-10 margin-bottom-10">
+                                        <a ng-click="(!ResponsableActual.Usuario || !ResponsableNuevo.Usuario) ? '' : Reasignar()" ng-disabled="!ResponsableActual.Usuario || !ResponsableNuevo.Usuario" class="btn btn-warning" href="javascript:;">Reasignar <i class="fa fa-check-square-o"></i></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-align-center"><b>Solicitudes</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-bordered table-advance table-checkable order-column">
+                                <thead>
+                                    <tr>
+                                        <th style="width:40px">
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                <input ng-model="SeleccionarTodo" ng-change="SeleccionarTodoChange()" type="checkbox" class="group-checkable" />
+                                                <span></span>
+                                            </label>
+                                        </th>
+                                        <th>Descripción</th>
+                                        <th>Número de solicitud</th>
+                                        <th>Proveedor</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Solicitud in Solicitudes">
+                                        <td>
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                <input ng-model="Solicitud.Seleccionada" type="checkbox" class="checkboxes" />
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                        <td>{{ Solicitud.Descripcion | limitTo : 50 }}</td>
+                                        <td>{{ Solicitud.NumeroSolicitud }}</td>
+                                        <td>{{ Solicitud.ProveedorSugerido }}</td>
+                                        <td>{{ Solicitud.FechaSolicitud | json_js_datetime }}</td>
+                                    </tr>
+                                    <tr ng-show="!Solicitudes || Solicitudes.length == 0">
+                                        <td class="text-center" colspan="5"><i class="fa fa-warning text-warning"></i> No existen elementos para mostrar</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_reasignacion_originador_compra.*@
+    <script src="~/AngularJS/app/ReasignacionOriginadorCompra/controllers/ReasignacionOriginadorCompraIndex.js"></script>
+}

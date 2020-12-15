@@ -1,0 +1,262 @@
+<div style="padding: 20px;">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="background-color: #104B89; color: #ffffff; border-radius: 5px; padding: 10px;">
+        <i class="las la-plane"></i> Viaje {{ dtTravel.travelType }}
+      </div>
+    </div>
+    <div class="col-md-12">&nbsp;</div>
+    <div class="col-md-6">
+      <div>
+        <label class="label-text"><b>Destino - Ruta</b></label>
+        <div
+          [ngClass]="vlTransport.destination == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Destino">
+              <span class="las la-plane-departure form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [data]="lstRutas" [textField]="'NombreRuta'" [valueField]="'IdRuta'"
+            [(ngModel)]="dtListRouteSelected" class="form-control regular-font"
+            (ngModelChange)="selectionData()">
+          </kendo-dropdownlist>
+        </div>
+        <div *ngIf="vlTransport.destination == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="dtTravel.travelType == 'Aéreo'" class="col-md-6">
+      <div>
+        <label class="label-text"><b>¿Requiere Pasaje?</b></label>
+        <div  [ngClass]="vlTransport.requiresPassage == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Requiere Pasaje">
+              <span class="las la-ticket-alt form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [(ngModel)]="dtTransport.requiresPassage" class="form-control regular-font"
+            [data]="lstRequiresPassage" (ngModelChange)="selectionData()" >
+          </kendo-dropdownlist>
+        </div>
+      </div>
+      <div *ngIf="vlTransport.requiresPassage == true">
+        <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+          requerido</span>
+      </div>
+    </div>
+
+
+    <div *ngIf="dtTravel.travelType == 'Terrestre'" class="col-md-6">
+      <!-- <div [ngClass]="dtTravel.travelType == 'Terrestre' ? 'col-md-6 visible' : 'oculto' "> -->
+      <div>
+        <label class="label-text"><b>Tiene Movilización Propia</b></label>
+        <div [ngClass]="vlTransport.requiresMovilization == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Requiere Pasaje">
+              <span class="las la-ticket-alt form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist [(ngModel)]="dtTransport.requiresMovilization" class="form-control regular-font"
+            [data]="lstRequiresPassage" (ngModelChange)="selectionRequiresMovilization()">
+          </kendo-dropdownlist>
+        </div>
+      </div>
+      <div *ngIf="vlTransport.requiresMovilization == true">
+        <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+          requerido</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="dtTravel.travelType == 'Aéreo'" class="row">
+    <div class="col-md-6"></div>
+    <div *ngIf="dtTransport.requiresPassage == 'No'" class="col-md-6">
+
+      <div
+        style="border-radius: 10px 10px 0px 0px; background-color: #104B89; width: 100%; color: #ffffff; padding-left: 20px; padding-right: 20px; padding-top: 8px; padding-bottom: 8px;">
+        Datos Pasaje Aéreo
+      </div>
+      <div style="border-radius: 0px 0px 10px 10px; border: 2px solid #104B89; padding: 20px;  width: 100%;">
+
+        <div>
+          <div class="form-group">
+            <label class="label-text"><b>Fecha de Emisión</b></label>
+            <kendo-datepicker [(ngModel)]="dtTransport.broadcastDate" [format]="'yyyy-MM-dd'" [min]="firstDateRange"
+              [navigation]="false" style="width: 100% !important;" [ngClass]="vlTransport.broadcastDate == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'" >
+            </kendo-datepicker>
+          </div>
+        </div>
+
+        <div>
+          <label class="label-text"><b>Nombre Aerolinea</b></label>
+          <div
+            [ngClass]="vlTransport.airlineName == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+            <div class="input-group-prepend">
+              <span class="input-group-text blank" id="">
+                <span class="las la-file-alt form-icon"></span>
+              </span>
+            </div>
+            <input type="text" [(ngModel)]="dtTransport.airlineName" class="form-control regular-font"
+              placeholder="Nombre Aerolinea" aria-describedby="" (ngModelChange)="validations()"
+              (keyup)="dtTransport.airlineName = global.formatField(dtTransport.airlineName, 'abcdefghijklmnñopqrstuvwxyzáéíóúÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ ', 100, 1)">
+          </div>
+        </div>
+
+        <div>
+          <label class="label-text"><b>Número de Pasaje</b></label>
+          <div
+            [ngClass]="vlTransport.numberPassage == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+            <div class="input-group-prepend">
+              <span class="input-group-text blank" id="">
+                <span class="las la-file-alt form-icon"></span>
+              </span>
+            </div>
+            <input type="text" [(ngModel)]="dtTransport.numberPassage" class="form-control regular-font"
+              placeholder="Número de Pasaje" aria-describedby="" (ngModelChange)="validations()"
+              (keyup)="dtTransport.numberPassage = global.formatField(dtTransport.numberPassage, 'abcdefghijklmnñopqrstuvwxyzáéíóúÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ ', 100, 1)">
+          </div>
+        </div>
+
+        <div>
+          <label class="label-text"><b>Referencia de pago / Autorización tarjeta de crédito</b></label>
+          <div
+            [ngClass]="vlTransport.referencePay == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+            <div class="input-group-prepend">
+              <span class="input-group-text blank" id="">
+                <span class="las la-file-alt form-icon"></span>
+              </span>
+            </div>
+            <input type="text" [(ngModel)]="dtTransport.referencePay" class="form-control regular-font"
+              placeholder="Referencia de pago / Autorización tarjeta de crédito" aria-describedby=""
+              (ngModelChange)="validations()"
+              (keyup)="dtTransport.referencePay = global.formatField(dtTransport.referencePay, 'abcdefghijklmnñopqrstuvwxyzáéíóúÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ ', 100, 1)">
+          </div>
+        </div>
+
+        <div>
+          <label class="label-text"><b>Valor</b></label>
+          <div
+            [ngClass]="vlTransport.valuePay == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+            <div class="input-group-prepend">
+              <span class="input-group-text blank" id="">
+                <span class="las la-file-alt form-icon"></span>
+              </span>
+            </div>
+            <input type="text" [(ngModel)]="dtTransport.valuePay" class="form-control regular-font" placeholder="Valor"
+              aria-describedby="" (ngModelChange)="validations()"
+              (keyup)="dtTransport.valuePay = global.formatField(dtTransport.valuePay, '1234567890', 10, 2)">
+          </div>
+        </div>
+
+        <div>
+          <label class="label-text"><b>Impuesto Aéreo</b></label>
+          <div
+            [ngClass]="vlTransport.airTax == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+            <div class="input-group-prepend">
+              <span class="input-group-text blank" id="">
+                <span class="las la-file-alt form-icon"></span>
+              </span>
+            </div>
+            <input type="text" [(ngModel)]="dtTransport.airTax" class="form-control regular-font"
+              placeholder="Impuesto Aéreo" aria-describedby="" (ngModelChange)="validations()"
+              (keyup)="dtTransport.airTax = global.formatField(dtTransport.airTax, '1234567890 ', 10, 2)">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <label class="label-text"><b>Impuesto</b></label>
+              <div [ngClass]="vlTransport.tax == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+                <div class="input-group-prepend">
+                  <span class="input-group-text blank" id="Requiere Pasaje">
+                    <span class="las la-ticket-alt form-icon"></span>
+                  </span>
+                </div>
+                <kendo-dropdownlist [(ngModel)]="dtTransport.tax" class="form-control regular-font"
+                [textField]="'name'" [valueField]="'value'"
+                [valuePrimitive]="true" [data]="lstTypeTaxes">
+                </kendo-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <label class="label-text"><b>&nbsp;</b></label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text blank" id="">
+                    <span class="las la-file-alt form-icon"></span>
+                  </span>
+                </div>
+                <input type="text" [(ngModel)]="dtTransport.valueTax" class="form-control regular-font"
+                  placeholder="Impuesto" aria-describedby="" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="label-text"><b>Pasaje Total</b></label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text blank" id="">
+                <span class="las la-file-alt form-icon"></span>
+              </span>
+            </div>
+            <input type="text" [(ngModel)]="dtTransport.valuePassage" class="form-control regular-font"
+              placeholder="Pasaje Total" aria-describedby="" disabled>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="dtTravel.travelType == 'Terrestre'" class="row">
+    <div class="col-md-6"></div>
+    <div *ngIf="dtTransport.requiresMovilization == 'Sí'" class="col-md-6">
+      <div
+        style="border-radius: 10px 10px 0px 0px; background-color: #104B89; width: 100%; color: #ffffff; padding-left: 20px; padding-right: 20px; padding-top: 8px; padding-bottom: 8px;">
+        Datos movilización
+      </div>
+      <div style="border-radius: 0px 0px 10px 10px; border: 2px solid #104B89; padding: 20px;  width: 100%;">
+      <div>
+        <label class="label-text"><b>Kilometros (ida y vuelta)</b></label>
+        <div
+          [ngClass]="vlTransport.numberKilometers == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="">
+              <span class="las la-file-alt form-icon"></span>
+            </span>
+          </div>
+          <input type="text" [(ngModel)]="dtTransport.numberKilometers" class="form-control regular-font"
+            placeholder="Número Kilometros" aria-describedby="" (ngModelChange)="validations(); calculateKilometeValue(dtTransport.numberKilometers)"
+            (keyup)="dtTransport.numberKilometers = global.formatField(dtTransport.numberKilometers, '1234567890.', 10, 1)">
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Valor</b></label>
+        <div
+          [ngClass]="vlTransport.valueKilometers == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="">
+              <span class="las la-file-alt form-icon"></span>
+            </span>
+          </div>
+          <input type="text" [(ngModel)]="dtTransport.valueKilometers" class="form-control regular-font" disabled
+            placeholder="Valor" aria-describedby=""
+            >
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</div>

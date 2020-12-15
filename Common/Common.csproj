@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61996384-F3B9-4B06-BC7B-1522DA3DE7AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseDesarrollo|AnyCPU'">
+    <OutputPath>bin\ReleaseDesarrollo\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleasePruebas|AnyCPU'">
+    <OutputPath>bin\ReleasePruebas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseProduccion|AnyCPU'">
+    <OutputPath>bin\ReleaseProduccion\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ContenedorVariablesSesion.cs" />
+    <Compile Include="Utilities\EmailTemplatesResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailTemplatesResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Enumeradores.cs" />
+    <Compile Include="Utilities\ErrorValidacion.cs" />
+    <Compile Include="Utilities\EventLogUtil.cs" />
+    <Compile Include="ViewModels\CategoriaProyectoPagoViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoAdicionalCamposAdicionalesViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoDetalleDetallesImpuestosViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoDetalleDetallesViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoFacturaTotalConImpuestosViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoFacturaPagosViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoTributariaViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoFacturaViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoDetalleViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonInfoAdicionalViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoNewViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoJsonViewModel.cs" />
+    <Compile Include="ViewModels\InformacionContabilidadPagoViewModel.cs" />
+    <Compile Include="ViewModels\SustentoTributarioPagoViewModel.cs" />
+    <Compile Include="ViewModels\IvaGrupoImpuestoArticuloPagoViewModel.cs" />
+    <Compile Include="ViewModels\ImpuestoRentaGrupoImpuestoArticuloPagoViewModel.cs" />
+    <Compile Include="ViewModels\GrupoImpuestoArticulosPagoViewModel.cs" />
+    <Compile Include="ViewModels\GrupoImpuestoPagoViewModel.cs" />
+    <Compile Include="ViewModels\FacturaDetallePagoViewModel.cs" />
+    <Compile Include="ViewModels\FacturaCabeceraPagoViewModel.cs" />
+    <Compile Include="ViewModels\DiarioPagoViewModel.cs" />
+    <Compile Include="ViewModels\PerfilAsientoContablePagoViewModel.cs" />
+    <Compile Include="ViewModels\ProveedorPagoViajeViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudPagoCabeceraViewModel.cs" />
+    <Compile Include="ViewModels\TareaPagoViewModel.cs" />
+    <Compile Include="ViewModels\TipoPagoViewModel.cs" />
+    <Compile Include="ViewModels\CuentaContableViewModel.cs" />
+    <Compile Include="ViewModels\EmailPendienteViewModel.cs" />
+    <Compile Include="ViewModels\ImpuestoPagoViewModel.cs" />
+    <Compile Include="ViewModels\RegionViewModel.cs" />
+    <Compile Include="ViewModels\CiudadViewModel.cs" />
+    <Compile Include="ViewModels\RolViewModel.cs" />
+    <Compile Include="ViewModels\RolAdministrativoViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoRespuestaSinDocumentosViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoDocumentoXMLViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoInfoAdicionalViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoDocumentoViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoXMLViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteElectronicoViewModel.cs" />
+    <Compile Include="ViewModels\AdjuntoCorreoViewModel.cs" />
+    <Compile Include="ViewModels\ArchivoViewModel.cs" />
+    <Compile Include="ViewModels\EmailAdjuntoViewModel.cs" />
+    <Compile Include="ViewModels\OrdenCompraCabeceraViewModel.cs" />
+    <Compile Include="ViewModels\OrdenCompraLineaViewModel.cs" />
+    <Compile Include="ViewModels\OrdenMadreLineaViewModel.cs" />
+    <Compile Include="ViewModels\OrdenMadreViewModel.cs" />
+    <Compile Include="ViewModels\EmailDestinatarioViewModel.cs" />
+    <Compile Include="ViewModels\EmailRespuestaViewModel.cs" />
+    <Compile Include="ViewModels\EmailViewModel.cs" />
+    <Compile Include="ViewModels\ImpuestoVigenteViewModel.cs" />
+    <Compile Include="ViewModels\ProveedorViewModel.cs" />
+    <Compile Include="ViewModels\PropiedadAdjuntoViewModel.cs" />
+    <Compile Include="ViewModels\AdjuntoViewModel.cs" />
+    <Compile Include="ViewModels\RecepcionViewModel.cs" />
+    <Compile Include="ViewModels\RecepcionLineaViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudCompraDetalleViewModel.cs" />
+    <Compile Include="ViewModels\TareaViewModel.cs" />
+    <Compile Include="ViewModels\TipoCompraViewModel.cs" />
+    <Compile Include="ViewModels\EstadoViewModel.cs" />
+    <Compile Include="ViewModels\PlantillasDistribucionCabeceraViewModel.cs" />
+    <Compile Include="ViewModels\PlantillasDistribucionDetalleViewModel.cs" />
+    <Compile Include="ViewModels\PropositoViewModel.cs" />
+    <Compile Include="ViewModels\CentroCostoViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\EmpresaViewModel.cs" />
+    <Compile Include="ViewModels\DepartamentoViewModel.cs" />
+    <Compile Include="ViewModels\ProductoViewModel.cs" />
+    <Compile Include="ViewModels\ProductoMercadeoViewModel.cs" />
+    <Compile Include="ViewModels\RespuestaRestViewModel.cs" />
+    <Compile Include="ViewModels\RolGestorCompraViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudCompraCabeceraViewModel.cs" />
+    <Compile Include="ViewModels\TokenViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utilities\EmailTemplatesResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailTemplatesResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionAnularRecepcion.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionGerenteAreaPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionGerenteGeneralPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionJefeInmediatoPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionSubgerenteAreaPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionVicepresidenteFinancieroPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailContabilizarPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailCorreccionJefeCompraProductoOtro.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionVicepresidenteFinancieroFueraPresupuesto.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionGerenteAreaFueraPresupuesto.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionJefeArea.html" />
+    <Content Include="Utilities\EmailTemplates\EmailDevolucionContabilidadSolicitantePago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailDevolucionSolicitantePago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailDevolucionSolicitante.html" />
+    <Content Include="Utilities\EmailTemplates\EmailEscalamientoAnteriorResponsable.html" />
+    <Content Include="Utilities\EmailTemplates\EmailEscalamientoNuevoResponsable.html" />
+    <Content Include="Utilities\EmailTemplates\EmailPrevioEscalamiento.html" />
+    <Content Include="Utilities\EmailTemplates\EmailRechazoContabilizacionPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailRechazoPago.html" />
+    <Content Include="Utilities\EmailTemplates\EmailRecordatorioEscalamiento.html" />
+    <Content Include="Utilities\EmailTemplates\-EmailCambioDistribucion.html" />
+    <Content Include="Utilities\EmailTemplates\EmailContabilizarRecepcion.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAdjuntarFacturaRecepcion.html" />
+    <Content Include="Utilities\EmailTemplates\EmailRecepcionNegada.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionRecepcion.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionGerenteGeneral.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionJefeCompra.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionVicepresidenteFinanciero.html" />
+    <Content Include="Utilities\EmailTemplates\EmailEnviarOrdenAlProveedor.html" />
+    <Content Include="Utilities\EmailTemplates\EmailRecepcionBienServicio.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionGestorCompra.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionGerenteArea.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionSubgerenteArea.html" />
+    <Content Include="Utilities\EmailTemplates\EmailRechazo.html" />
+    <Content Include="Utilities\EmailTemplates\EmailEnviarOrdenAlSolicitante.html" />
+    <Content Include="Utilities\EmailTemplates\EmailVerificarPresupuesto.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionJefeInmediatoMontoMayor.html" />
+    <Content Include="Utilities\EmailTemplates\EmailAprobacionJefeInmediato.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

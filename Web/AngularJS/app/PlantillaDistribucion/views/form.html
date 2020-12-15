@@ -1,0 +1,123 @@
+﻿<div class="modal-content" id="modal_plantilla_centrocosto_create" ng-modal-draggable="modal_plantilla_centrocosto_create">
+    <div class="modal-header">
+        <button ng-click="Cerrar()" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">
+            <i ng-show="Data.Accion == 'create'" class="icon-plus"></i>
+            <i ng-show="Data.Accion == 'edit'" class="icon-note"></i>
+            <i ng-show="Data.Accion == 'detail'" class="icon-eye"></i>
+            {{ Data.TituloPag }}
+        </h4>
+    </div>
+    <div class="modal-body form">
+        <form action="#" class="form-horizontal">
+            <div class="form-body">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Empresa <span class="font-red-mint">*</span></label>
+                            <div class="col-md-9">
+                                <select ng-model="Distribucion.Empresa" ng-change="CambiarEmpresa()" ng-disabled="Data.Accion != 'create' || Data.DesdeSolicitud" option="Metadatos.Empresas" ng-options="option.Nombre for option in Metadatos.Empresas track by option.Codigo" chosen></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="!Data.DesdeSolicitud" class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Descripción <span class="font-red-mint">*</span></label>
+                            <div class="col-md-9">
+                                <input ng-model="Distribucion.Descripcion" ng-disabled="Data.Accion == 'detail' || Data.DesdeSolicitud" maxlength="100" type="text" class="form-control input-sm mayusculas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr ng-show="!Data.DesdeSolicitud" />
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Cargar plantilla</label>
+                            <div class="col-md-9">
+                                <select ng-model="Plantilla" ng-disabled="Data.Accion == 'detail' || Data.TipoProducto == '0'" option="Metadatos.Plantillas" ng-options="('(' + option.DescripcionDepartamentoPropietario + ') ' + option.Descripcion) for option in Metadatos.Plantillas track by option.Id" chosen></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="padding-top:3px">
+                        <a ng-click="(!Plantilla || !Plantilla.Id || Data.Accion == 'detail') ? '' : CargarPlantilla()" ng-disabled="!Plantilla || !Plantilla.Id || Data.Accion == 'detail'" href="javascript:;" class="btn btn-sm default">Cargar <i class="fa fa-refresh"></i></a>
+                    </div>
+                    <div ng-show="Data.DesdeSolicitud" class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Copiar desde</label>
+                            <div class="col-md-9">
+                                <select ng-model="Linea" ng-disabled="Data.Accion == 'detail'" option="Data.Lineas" ng-options="option.Descripcion for option in Data.Lineas track by option.Id" chosen></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="Data.DesdeSolicitud" class="col-md-4" style="padding-top:3px">
+                        <a ng-click="(!Linea || !Linea.Id || Data.Accion == 'detail') ? '' : CopiarDesdeDetalle()" ng-disabled="!Linea || !Linea.Id || Data.Accion == 'detail'" href="javascript:;" class="btn btn-sm default">Copiar <i class="fa fa-copy"></i></a>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="panel panel-info" style="margin-bottom: 0;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-align-center"><b>Distribuciones</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive" style="height: 300px; overflow-y: scroll;">
+                            <table class="table table-condensed table-bordered table-advance">
+                                <thead>
+                                    <tr>
+                                        <th width="4%" style="text-align:center;">
+                                            <a ng-click="(Data.Accion == 'detail' || Data.TipoProducto == '0') ? '' : AdicionarDetalle()" ng-disabled="Data.Accion == 'detail' || Data.TipoProducto == '0'" href="javascript:;" title="Adicionar distribución" class="btn btn-circle blue btn-outline btn-xs"><i class="fa fa-plus"></i></a>
+                                        </th>
+                                        <th width="29%">Departamento</th>
+                                        <th width="29%">Centro de costo</th>
+                                        <th width="29%">Propósito</th>
+                                        <th>Porcentaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Detalle in Distribucion.Detalles" ng-show="Detalle.EstadoId == 1">
+                                        <td style="padding:1px 0 0 0; text-align: center;">
+                                            <a ng-click="(Data.Accion == 'detail' || Data.TipoProducto == '0') ? '' : EliminarDetalle(Detalle)" ng-disabled="Data.Accion == 'detail' || Data.TipoProducto == '0'" href="javascript:;" title="Eliminar" class="btn btn-circle red btn-outline btn-xs"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                        <td style="padding:0">
+                                            <div style="overflow: visible !important;">
+                                                <select ng-model="Detalle.Departamento" ng-disabled="Data.Accion == 'detail'" ng-change="CambioDepartamento(Detalle)" option="Metadatos.Departamentos" ng-options="option.CodigoDescripcion for option in Metadatos.Departamentos track by option.Codigo" chosen></select>
+                                            </div>
+                                        </td>
+                                        <td style="padding:0">
+                                            <select ng-model="Detalle.CentroCosto" ng-disabled="Data.Accion == 'detail'" ng-change="CambioCentroCosto(Detalle)" option="Detalle.MetadatosCentrosCosto" ng-options="option.CodigoDescripcion for option in Detalle.MetadatosCentrosCosto track by option.Codigo" chosen></select>
+                                        </td>
+                                        <td style="padding:0">
+                                            <select ng-model="Detalle.Proposito" ng-disabled="Data.Accion == 'detail'" option="Detalle.MetadatosPropositos" ng-options="option.CodigoDescripcion for option in Detalle.MetadatosPropositos track by option.Codigo" chosen></select>
+                                        </td>
+                                        <td style="padding:0">
+                                            <input ng-model="Detalle.Porcentaje" ng-change="CalcularTotalDetalle()" ng-disabled="Data.Accion == 'detail'" ng-dos-decimales type="text" class="form-control input-sm text-right" />
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="Distribucion.Detalles && Distribucion.Detalles.length > 0">
+                                        <td colspan="4"></td>
+                                        <td style="padding:0">
+                                            <input ng-model="TotalDetalle" class="form-control input-sm text-right" type="text" disabled />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="Cerrar()" href="javascript:;" class="btn dark btn-outline" data-dismiss="modal">Cancelar <i class="fa fa-times"></i></a>
+        <a ng-click="Data.Accion == 'detail' ? '' : Crear()" ng-disabled="Data.Accion == 'detail'" href="javascript:;" class="btn green">Guardar <i class="fa fa-save"></i></a>
+    </div>
+</div>

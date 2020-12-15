@@ -1,0 +1,12 @@
+﻿<OrdenCompraCabeceraViewModel>
+  <NombreProveedor>SENTINEL-ECUADOR S.A</NombreProveedor>
+  <DireccionProveedor>CATALINA ALDAZ N34-155 Y AV ELOY ALFARO</DireccionProveedor>
+  <EmailProveedor>daniel.sanchez@sentinel.biz</EmailProveedor>
+  <NumeroSolicitud>34121</NumeroSolicitud>
+  <NumeroOrdenMadre>OCS_00004717</NumeroOrdenMadre>
+  <FechaOrdenCompra>2018-12-18 13:40:25</FechaOrdenCompra>
+  <NombreSolicitante>CARPIO NETO NORMA EDITH</NombreSolicitante>
+  <Subtotal>6,520.00</Subtotal>
+  <Iva>0.00</Iva>
+  <Total>6,520.00</Total>
+</OrdenCompraCabeceraViewModel>

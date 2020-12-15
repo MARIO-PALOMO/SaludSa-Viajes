@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "Anulación de recepción";
+}
+
+<link href="~/AngularJS/lib/angular-datatables.bootstrap/datatables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_anulacion_recepcion" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="AnulacionRecepcionIndex" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div class="actions">
+                    <a ng-click="Cancelar()" ng-show="Recepcion.Id" href="javascript:;" class="btn btn-circle dark btn-outline">Cancelar <i class="fa fa-times"></i></a>
+                    <a ng-click="Crear()" ng-show="Recepcion.Id" href="javascript:;" class="btn btn-circle green">Enviar <i class="fa fa-check"></i></a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+
+                <form action="#" class="form-horizontal">
+                    <div class="form-body" style="padding-top:0">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title text-align-center"><b>Datos de Recepción</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-12" style="text-align: left !important;">No. de solicitud</label>
+                                                    <div class="col-md-12">
+                                                        <input ng-model="NumeroSolicitud" ng-entero type="text" class="form-control input-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 text-align-center" style="margin-top: 25px;">
+                                                <a ng-click="BuscarRecepciones()" class="btn btn-primary" href="javascript:;">Buscar <i class="fa fa-search"></i></a>
+                                            </div>
+                                            <div ng-show="Recepciones && Recepciones.length > 0" class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-12" style="text-align: left !important;">No. de recepción</label>
+                                                    <div class="col-md-12">
+                                                        <select ng-model="RecepcionFiltro" ng-change="ObtenerDatos()" option="Recepciones" ng-options="option.NumeroRecepcion for option in Recepciones track by option.Id" chosen></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-danger" ng-show="mostrarMensajeNoExisten">
+                                    <i class="fa fa-warning text-warning"></i> No existen recepciones para anular
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="Recepcion.Id" class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Recepción de Bienes/Servicios</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5">No. de Orden Madre</label>
+                                        <div class="col-md-7">
+                                            <input ng-model="RecepcionFiltro.NumeroOrdenMadre" type="text" disabled class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5">Fecha de Recepción</label>
+                                        <div class="col-md-7">
+                                            <input ng-model="Recepcion.FechaRecepcion" type="text" disabled class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5">No. de Recepción</label>
+                                        <div class="col-md-7">
+                                            <input ng-model="Recepcion.NumeroRecepcion" type="text" disabled class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-bordered table-advance">
+                                            <thead>
+                                                <tr>
+                                                    <th>Bien/Servicio <span class="font-red-mint">*</span></th>
+                                                    <th>Observación <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Cantidad <span class="font-red-mint">*</span></th>
+
+                                                    <th style="width:100px;">Valor <span class="font-red-mint">*</span></th>
+                                                    <th style="width:50px;">IVA <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Total <span class="font-red-mint">*</span></th>
+
+                                                    <th style="width:100px;">Cantidad Recepción <span class="font-red-mint">*</span></th>
+                                                    <th style="width:100px;">Valor Recepción <span class="font-red-mint">*</span></th>
+
+                                                    <th style="width:80px;">Distribución</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="Detalle in Recepcion.RecepcionLineas">
+                                                    <td>
+                                                        {{ Detalle.Tipo == '0' ? Detalle.ProductoBien.Nombre : Detalle.ProductoServicio.Nombre }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Observacion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Cantidad }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Valor }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Impuesto.Descripcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.Total }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ Detalle.CantidadRecepcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ Detalle.ValorRecepcion }}
+                                                    </td>
+
+                                                    <td style="padding:0">
+                                                        <a ng-click="AdicionarDistribucionRecepcion(Detalle)" class="btn default btn-xs" style="height: 100%; width: 100%; padding:3px;" href="javascript:;"><i class="fa fa-plus-square-o {{ ((Detalle.PlantillaDistribucionDetalle && Detalle.PlantillaDistribucionDetalle.length) > 0 ? 'font-red-mint' : '') }}"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-align-reverse" colspan="6"><b>Totales:</b></td>
+                                                    <td>
+                                                        {{ TotalCantidadRecepcion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ TotalValorRecepcion }}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="Recepcion.Id" class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Motivo de Anulación</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Motivo <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <textarea ng-model="Observacion" class="form-control mayusculas" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a ng-click="Cancelar()" ng-show="Recepcion.Id" href="javascript:;" class="btn btn-circle dark btn-outline">Cancelar <i class="fa fa-times"></i></a>
+                                        <a ng-click="Crear()" ng-show="Recepcion.Id" href="javascript:;" class="btn btn-circle green">Enviar <i class="fa fa-check"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_platilla_distribucion.*@
+    <script src="~/AngularJS/app/PlantillaDistribucion/controllers/PlantillaDistribucionCreate.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_anulacion_recepcion.*@
+    <script src="~/AngularJS/app/AnulacionRecepcion/controllers/AnulacionRecepcionIndex.js"></script>
+    <script src="~/AngularJS/app/AnulacionRecepcion/controllers/AnulacionRecepcionCreate.js"></script>
+}

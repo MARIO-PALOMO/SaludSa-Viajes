@@ -1,0 +1,35 @@
+﻿@{
+    var url = ViewContext.RouteData.Values["Controller"].ToString();
+    Common.Utilities.ContenedorVariablesSesion sesion = Session["vars"] as Common.Utilities.ContenedorVariablesSesion;
+    Data.Context.ApplicationDbContext db = new Data.Context.ApplicationDbContext();
+    var CantTareasPendientes = Logic.TareaBLL.ObtenerCantidadTareasPendientes(sesion, db);
+
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+
+            <!--**************************************************-->
+            <div class="page-sidebar-wrapper">
+                <ul class="page-sidebar-menu visible-sm visible-xs page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "SolicitudCompra")" class="nav-link">
+                            Compras
+                        </a>                        
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "SolicitudPago")" class="nav-link">
+                            Pagos
+                        </a>                        
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Viaje")" class="nav-link">
+                            Viajes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--**************************************************-->
+        </div>
+    </div>
+}

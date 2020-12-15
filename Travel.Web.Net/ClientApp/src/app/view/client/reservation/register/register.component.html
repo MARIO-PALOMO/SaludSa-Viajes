@@ -1,0 +1,119 @@
+<div style="padding: 20px;">
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <div>
+        <label class="label-text"><b>Empresa</b></label>
+        <div
+          [ngClass]="vlRegister.company == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Empresa">
+              <span class="las la-building form-icon"></span>
+            </span>
+          </div>
+          <kendo-dropdownlist class="form-control regular-font" [data]="lstCompany" [(ngModel)]="dtCompany"
+            textField="Nombre" valueField="Codigo" (ngModelChange)="setCompany()">
+            <ng-template kendoDropDownListItemTemplate let-dataItem>
+              <span>{{ dataItem.Nombre }}</span>
+            </ng-template>
+          </kendo-dropdownlist>
+        </div>
+        <div *ngIf="vlRegister.company == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Nombre</b></label>
+        <div [ngClass]="vlRegister.name == true ? 'input-group mb-3 validation-conta validation-control': 'input-group mb-3'">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Nombre">
+              <span class="las la-user-circle form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Nombre" aria-describedby="Nombre"
+            [(ngModel)]="dtRegister.name" (ngModelChange)="validations()" disabled>
+        </div>
+        <div *ngIf="vlRegister.name == true">
+          <i class="las la-info-circle validation-icon"></i> <span class="validation-text">Este campo es
+            requerido</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Identificación</b></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Identificación">
+              <span class="las la-id-card-alt form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Identificación"
+            aria-describedby="Identificación" [(ngModel)]="dtRegister.identification" disabled>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Correo Electrónico</b></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Email">
+              <span class="las la-envelope form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Correo Electrónico" aria-describedby="Email"
+            [(ngModel)]="dtRegister.email" disabled>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <div>
+        <label class="label-text"><b>Departamento</b></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Departamento">
+              <span class="las la-city form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Departamento"
+            aria-describedby="Departamento" [(ngModel)]="dtRegister.department" disabled>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Cargo</b></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Cargo">
+              <span class="las la-vote-yea form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Cargo" aria-describedby="Cargo"
+            [(ngModel)]="dtRegister.position" disabled>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-text"><b>Ciudad</b></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text blank" id="Ciudad">
+              <span class="la la-map-marker form-icon"></span>
+            </span>
+          </div>
+          <input type="text" class="form-control regular-font" placeholder="Ciudad" aria-describedby="Ciudad"
+            [(ngModel)]="dtRegister.city" disabled>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

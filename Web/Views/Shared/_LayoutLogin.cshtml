@@ -1,0 +1,99 @@
+﻿@using Common.Utilities;
+@{
+    ContenedorVariablesSesion sesion = Session["vars"] as ContenedorVariablesSesion;
+}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title | Sistema de Gestión de Compras</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @Styles.Render("~/Content/global_mandatory_styles_css")
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @RenderSection("pageLevelPluginsStyles", required: false)
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    @Styles.Render("~/Content/theme_global_styles_css")
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    @Styles.Render("~/Content/theme_layout_styles_css")
+    <!-- END THEME LAYOUT STYLES -->
+    <!-- BEGIN PERSONAL STYLES -->
+    @Styles.Render("~/Content/personal_styles_css")
+    <!-- END PERSONAL STYLES -->
+
+    <link href="~/Content/pages/css/login-2.min.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body class=" login">
+
+    <div class="logo">
+        <a href="javascript:;">
+            <img style="max-width:200px" src="~/Content/layouts/layout/img/logo-blanco.png" />
+        </a>
+    </div>
+    <div class="content">
+        @if (sesion != null)
+        {
+            if (sesion.errores != null)
+            {
+                if (sesion.errores.Count() > 0)
+                {
+                    <div class="custom-alerts alert alert-danger fade in">
+                        @foreach (var error in sesion.errores)
+                        {
+                            <i class="fa fa-exclamation-triangle"></i> @error <br />
+                        }
+                    </div>
+                }
+                sesion.errores = null;
+            }
+        }
+
+        @RenderBody()
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="~/Content/global/plugins/respond.min.js"></script>
+    <script src="~/Content/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    @Scripts.Render("~/bundles/core_plugins_js")
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PERSONAL PLUGINS -->
+    @Scripts.Render("~/bundles/personal_plugins_js")
+    <!-- END PERSONAL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/Content/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script src="~/Content/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+    <script src="~/Content/global/plugins/select2/js/select2.full.min.js"></script>
+    <script src="~/Content/global/plugins/backstretch/jquery.backstretch.min.js"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    @Scripts.Render("~/bundles/theme_global_scripts_js")
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/Content/pages/scripts/login-5.js"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    @Scripts.Render("~/bundles/theme_layout_scripts_js")
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- BEGIN ANGULARJS FRAMEWORK -->
+    @Scripts.Render("~/bundles/angular_js")
+    <!-- END ANGULARJS FRAMEWORK -->
+    <!-- BEGIN PERSONAL SCRIPTS -->
+    @RenderSection("personalScripts", required: false)
+    <!-- END PERSONAL SCRIPTS -->
+</body>
+</html>

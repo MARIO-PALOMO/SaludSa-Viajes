@@ -1,0 +1,52 @@
+
+.tabla-i {
+    border-radius: 7px 0px 0px 0px;
+    -moz-border-radius: 7px 0px 0px 0px;
+    -webkit-border-radius: 7px 0px 0px 0px;
+  }
+  
+  .tabla-d {
+    border-radius: 0px 7px 0px 0px;
+    -moz-border-radius: 0px 7px 0px 0px;
+    -webkit-border-radius: 0px 7px 0px 0px;
+  }
+  
+  .tabla-i-d {
+    border-radius: 0px 0px 7px 7px;
+    -moz-border-radius: 0px 0px 7px 7px;
+    -webkit-border-radius: 0px 0px 7px 7px;
+  }
+  
+  .tabla {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .tabla th,
+  .tabla td {
+    padding: 10px !important;
+  }
+  
+  .tabla tr {
+    border-bottom: 1px solid rgb(165, 165, 165);
+    text-align: left;
+  }
+
+  .tabla-bordes{
+    border-left: 1px solid rgb(165, 165, 165);
+    border-right: 1px solid rgb(165, 165, 165);
+  }
+  
+  .tabla thead {
+    text-align: left;
+  }
+  
+  .tabla tbody {
+    background: #ffffff;
+    color: #000000;
+  }
+  
+  .tabla tfoot {
+    background: #ffffff;
+    color: #000000;
+  }

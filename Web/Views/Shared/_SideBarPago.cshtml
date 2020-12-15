@@ -1,0 +1,275 @@
+﻿@{
+    var url = ViewContext.RouteData.Values["Controller"].ToString();
+    Common.Utilities.ContenedorVariablesSesion sesion = Session["vars"] as Common.Utilities.ContenedorVariablesSesion;
+    Data.Context.ApplicationDbContext db = new Data.Context.ApplicationDbContext();
+    var CantTareasPendientes = /*Logic.TareaPagoBLL.ObtenerCantidadTareasPendientes(sesion, db)*/Model;
+
+
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            <ul class="page-sidebar-menu  page-header-fixed hidden-sm hidden-xs" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                <li class="sidebar-toggler-wrapper hide">
+                    <div class="sidebar-toggler">
+                        <span></span>
+                    </div>
+                </li>
+
+                <li class="heading">
+                    <h3 class="uppercase">Menu</h3>
+                </li>
+
+                <li class="nav-item start @(url == "Home" ? "active open" : "")">
+                    <a href="@Url.Action("Index", "Home")" class="nav-link nav-toggle">
+                        <i class="icon-home"></i>
+                        <span class="title">Inicio</span>
+                        @if (url == "Home")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                </li>
+
+                <li class="nav-item start @(url == "TareaPago" ? "active open" : "")">
+                    <a href="@Url.Action("Index", "TareaPago")" class="nav-link nav-toggle">
+                        <i class="icon-pin"></i>
+                        <span class="title">Tareas pendientes</span>
+                        @if (CantTareasPendientes > 0)
+                        {
+                            <span class="badge badge-danger">@(CantTareasPendientes)</span>
+                        }
+                        @if (url == "TareaPago")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                </li>
+
+                <li class="nav-item start @(url == "SolicitudPago" ? "active open" : "")">
+                    <a href="@Url.Action("Index", "SolicitudPago")" class="nav-link nav-toggle">
+                        <i class="icon-wallet"></i>
+                        <span class="title">Solicitudes de pago</span>
+                        @if (url == "SolicitudPago")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                </li>
+
+                @if (sesion != null && (sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_HISTORIAL_TAREAS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_SEGUIMIENTO_PROCESOS)))
+                {
+                    <li class="nav-item start @((url == "SeguimientoProcesosPago" || url == "HistorialTareasPago" || url == "DataWarehousePago") ? "active open" : "")">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">Reportes</span>
+                            <span class="arrow @((url == "SeguimientoProcesosPago" || url == "HistorialTareasPago" || url == "DataWarehousePago") ? "open" : "")"></span>
+                            @if (url == "SeguimientoProcesosPago" || url == "HistorialTareasPago" || url == "DataWarehousePago")
+                            {
+                                <span class="selected"></span>
+                            }
+                        </a>
+                        <ul class="sub-menu">
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_HISTORIAL_TAREAS))
+                            {
+                                <li class="nav-item start @(url == "HistorialTareasPago" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "HistorialTareasPago")" class="nav-link ">
+                                        <span class="title">Historial de tareas</span>
+                                    </a>
+                                </li>
+                            }
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_SEGUIMIENTO_PROCESOS))
+                            {
+                                <li class="nav-item start @(url == "SeguimientoProcesosPago" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "SeguimientoProcesosPago")" class="nav-link ">
+                                        <span class="title">Seguimiento de procesos</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+                @if (sesion != null && (sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REASIGNACION_TAREAS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_IMPUESTOS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_TIPOS_PAGO)))
+                {
+                    <li class="nav-item start @(url == "ReasignacionTareasPago" || url == "ImpuestoPago" || url == "ParametroPago" || url == "TipoPagoPago" || url == "ConfigFactElectronicaPago" ? "active open" : "")">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-cog"></i>
+                            <span class="title">Administración</span>
+                            <span class="arrow @(url == "ReasignacionTareasPago" || url == "ImpuestoPago" || url == "ParametroPago" || url == "TipoPagoPago" || url == "ConfigFactElectronicaPago" ? "open" : "")"></span>
+                            @if (url == "ReasignacionTareasPago" || url == "ImpuestoPago" || url == "ParametroPago" || url == "TipoPagoPago" || url == "ConfigFactElectronicaPago")
+                            {
+                                <span class="selected"></span>
+                            }
+                        </a>
+                        <ul class="sub-menu">
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REASIGNACION_TAREAS))
+                            {
+                                <li class="nav-item start @(url == "ReasignacionTareasPago" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "ReasignacionTareasPago")" class="nav-link ">
+                                        <span class="title">Reasignación de tareas</span>
+                                    </a>
+                                </li>
+                            }
+
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_IMPUESTOS))
+                            {
+                                <li class="nav-item start @(url == "ImpuestoPago" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "ImpuestoPago")" class="nav-link ">
+                                        <span class="title">Impuestos</span>
+                                    </a>
+                                </li>
+                            }
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_TIPOS_PAGO))
+                            {
+                                <li class="nav-item start @(url == "TipoPagoPago" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "TipoPagoPago")" class="nav-link ">
+                                        <span class="title">Tipos de pago</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+
+            <!--**************************************************-->
+            <div class="page-sidebar-wrapper">
+                <ul class="page-sidebar-menu visible-sm visible-xs page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "SolicitudCompra")" class="nav-link nav-toggle">
+                            Compras
+                        </a>
+                    </li>
+
+                    <li class="nav-item active open">
+                        <a href="index.html" class="nav-link nav-toggle">
+                            Pagos
+                            <span class="selected"> </span>
+                            <span class="arrow open"> </span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start @(url == "Home" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "Home")" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Inicio</span>
+                                    @if (url == "Home")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                            </li>
+
+                            <li class="nav-item start @(url == "TareaPago" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "TareaPago")" class="nav-link nav-toggle">
+                                    <i class="icon-pin"></i>
+                                    <span class="title">Tareas pendientes</span>
+                                    @if (CantTareasPendientes > 0)
+                                    {
+                                        <span class="badge badge-danger">@(CantTareasPendientes)</span>
+                                    }
+                                    @if (url == "TareaPago")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                            </li>
+
+                            <li class="nav-item start @(url == "SolicitudPago" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "SolicitudPago")" class="nav-link nav-toggle">
+                                    <i class="icon-wallet"></i>
+                                    <span class="title">Solicitudes de pago</span>
+                                    @if (url == "SolicitudPago")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                            </li>
+
+                            @if (sesion != null && (sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_HISTORIAL_TAREAS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_SEGUIMIENTO_PROCESOS)))
+                            {
+                                <li class="nav-item start @((url == "SeguimientoProcesosPago" || url == "HistorialTareasPago") ? "active open" : "")">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="title">Reportes</span>
+                                        <span class="arrow @((url == "SeguimientoProcesosPago" || url == "HistorialTareasPago") ? "open" : "")"></span>
+                                        @if (url == "SeguimientoProcesosPago" || url == "HistorialTareasPago")
+                                        {
+                                            <span class="selected"></span>
+                                        }
+                                    </a>
+                                    <ul class="sub-menu">
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_HISTORIAL_TAREAS))
+                                        {
+                                            <li class="nav-item start @(url == "HistorialTareasPago" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "HistorialTareasPago")" class="nav-link ">
+                                                    <span class="title">Historial de tareas</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REPORTE_SEGUIMIENTO_PROCESOS))
+                                        {
+                                            <li class="nav-item start @(url == "SeguimientoProcesosPago" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "SeguimientoProcesosPago")" class="nav-link ">
+                                                    <span class="title">Seguimiento de procesos</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+                            @if (sesion != null && (sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REASIGNACION_TAREAS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_IMPUESTOS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_TIPOS_PAGO)))
+                            {
+                                <li class="nav-item start @(url == "ReasignacionTareasPago" || url == "ImpuestoPago" || url == "ParametroPago" || url == "TipoPagoPago"  ? "active open" : "")">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="fa fa-cog"></i>
+                                        <span class="title">Administración</span>
+                                        <span class="arrow @(url == "ReasignacionTareasPago" || url == "ImpuestoPago" || url == "ParametroPago" || url == "TipoPagoPago" ? "open" : "")"></span>
+                                        @if (url == "ReasignacionTareasPago" || url == "ImpuestoPago" || url == "ParametroPago" || url == "TipoPagoPago")
+                                        {
+                                            <span class="selected"></span>
+                                        }
+                                    </a>
+                                    <ul class="sub-menu">
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_REASIGNACION_TAREAS))
+                                        {
+                                            <li class="nav-item start @(url == "ReasignacionTareasPago" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "ReasignacionTareasPago")" class="nav-link ">
+                                                    <span class="title">Reasignación de tareas</span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_IMPUESTOS))
+                                        {
+                                            <li class="nav-item start @(url == "ImpuestoPago" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "ImpuestoPago")" class="nav-link ">
+                                                    <span class="title">Impuestos</span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_PAGO_TIPOS_PAGO))
+                                        {
+                                            <li class="nav-item start @(url == "TipoPagoPago" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "TipoPagoPago")" class="nav-link ">
+                                                    <span class="title">Tipos de pago</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            Viajes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--**************************************************-->
+        </div>
+    </div>
+}

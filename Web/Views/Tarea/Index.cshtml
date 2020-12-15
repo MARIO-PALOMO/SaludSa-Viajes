@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Tareas pendientes";
+}
+
+<link href="~/AngularJS/lib/angular-datatables.bootstrap/datatables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_tarea" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="TareaIndex" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div class="actions">
+                    
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive" style="overflow-x: visible;">
+                    <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-striped table-bordered table-hover order-column">
+                        <thead>
+                            <tr>
+                                <th class="text-align-center" style="width:40px">
+                                    <i class="fa fa-flag-o"></i>
+                                </th>
+                                <th>Folio</th>
+                                <th>Solicitante</th>
+                                <th>Tipo</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tarea in tareas">
+                                <td class="text-align-center">
+                                    <i ng-show="tarea.TiempoColor == 1" class="fa fa-flag font-green-sharp"></i>
+                                    <i ng-show="tarea.TiempoColor == 2" class="fa fa-flag text-warning"></i>
+                                    <i ng-show="tarea.TiempoColor == 3" class="fa fa-flag font-red-mint"></i>
+                                </td>
+                                <td><a href="{{ pathURL + '/Tarea/Edit?tipo=' + tarea.TipoTarea + '&tareaId=' + tarea.Id + '&solicitudId=' + tarea.SolicitudCompraCabeceraId }}" target="_self">{{ 'Solicitud ' + tarea.SolicitudCompraCabeceraNumero + ': ' + (tarea.NombreProveedor ? tarea.NombreProveedor : (tarea.SolicitudCompraCabeceraDescripcion | limitTo : 50)) }}</a></td>
+                                <td>{{ tarea.SolicitudCompraCabeceraSolicitante }}</td>
+                                <td>{{ tarea.Actividad }}</td>
+                                <td>{{ tarea.FechaCreacion | json_js_datetime }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Folio</th>
+                                <th>Solicitante</th>
+                                <th>Tipo</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_tarea.*@
+    <script src="~/AngularJS/app/Tarea/controllers/TareaIndex.js"></script>
+}
+
+@if(ViewBag.Mensaje != null && ViewBag.Mensaje != string.Empty)
+{
+    <script type="text/javascript">
+        toastr['success']("@ViewBag.Mensaje", "Confirmación");
+    </script>
+}

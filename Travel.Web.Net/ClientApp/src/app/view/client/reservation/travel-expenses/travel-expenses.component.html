@@ -1,0 +1,78 @@
+<div style="padding: 20px;">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div>
+        <table class="tabla">
+          <thead style="background-color: #104B89; color: #fff;">
+            <tr class="tabla-web">
+              <th class="tabla-i">Descripción</th>
+              <th>Cantidad</th>
+              <th class="tabla-d">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tabla-bordes">
+              <td>N° Noches</td>
+              <td>{{ dtTravel.numbersNight }}</td>
+              <td>$ {{ global.formatNumber(dtMoney.moneyNights, 2) }}</td>
+            </tr>
+            <tr class="tabla-bordes">
+              <td>N° Días</td>
+              <td>{{ dtMoney.days }}</td>
+              <td>$ {{ global.formatNumber(dtMoney.moneyDays, 2) }}</td>
+            </tr>
+            <tr class="tabla-bordes" style="background-color: #416c99d5;">
+              <td style="color: #fff !important;">Subtotal (Noches + Días)</td>
+              <td></td>
+              <td style="color: #fff !important;">$ {{ global.formatNumber(dtMoney.totalMoneyDaysNights, 2) }}</td>
+            </tr>
+            <tr class="tabla-bordes">
+              <td>N° Kilómetros</td>
+              <td>{{ dtMoney.numberKilometers }}</td>
+              <td>$ {{ global.formatNumber(dtMoney.valueKilometers, 2) }}</td>
+            </tr>
+            <tr class="tabla-bordes">
+              <td style="width: 300px !important;">Otros Viáticos</td>
+              <td style="width: 150px !important;">
+                <kendo-dropdownlist [(ngModel)]="dtMoney.otherMoney" class="form-control regular-font"
+                  [data]="lstOtherMoney" (ngModelChange)="getViewOtherMoney()">
+                </kendo-dropdownlist>
+              </td>
+              <td style="width: 200px !important;">
+                <span *ngIf="!stateOtherMoney">
+                  $ {{ global.formatNumber(dtMoney.valueOtherMoney, 2) }}
+                </span>
+                <input *ngIf="stateOtherMoney" type="number" [(ngModel)]="dtMoney.valueOtherMoney" class="form-control regular-font"
+                  placeholder="Ingresar Valor ($)" (ngModelChange)="getCalculations()">
+              </td>
+            </tr>
+            <tr *ngIf="stateOtherMoney" class="tabla-bordes">
+              <td></td>
+              <td colspan="2">
+                <input type="text" [(ngModel)]="dtMoney.justifyMoney" class="form-control regular-font"
+                  placeholder="Ingresar Justificación">
+              </td>
+            </tr>
+            <tr class="tabla-bordes" style="background-color: #416c99d5;">
+              <td style="color: #fff !important;">Viáticos a Entregar</td>
+              <td></td>
+              <td style="color: #fff !important;">$ {{ global.formatNumber(dtMoney.total, 2) }}</td>
+            </tr>
+            <tr class="tabla-bordes">
+              <td>Hospedaje</td>
+              <td>1</td>
+              <td>$ {{ global.formatNumber(dtMoney.totalHotel, 2) }}</td>
+            </tr>
+          </tbody>
+          <tfoot style="background-color: #104B89; color: #fff;">
+            <tr>
+              <td colspan="3" class="tabla-i-d"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

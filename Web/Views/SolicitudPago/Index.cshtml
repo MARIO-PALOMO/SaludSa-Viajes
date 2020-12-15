@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Solicitudes de pago";
+    Layout = "~/Views/Shared/_LayoutPago.cshtml";
+}
+
+<link href="~/AngularJS/lib/angular-datatables.bootstrap/datatables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_solicitud_pago" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="SolicitudPagoIndex" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div class="actions">
+                    <div style="display: inline; margin-right: 20px;">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Mostrar contabilizados
+                            <input ng-model="MostrarContabilizados" type="checkbox">
+                            <span></span>
+                        </label>
+                        <button ng-click="Buscar()" class="btn btn-sm default">Buscar <i class="fa fa-search"></i></button>
+                    </div>
+
+                    <a href="@Url.Action("Create", "SolicitudPago")" class="btn btn-circle blue btn-outline">Nueva solicitud <i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive" style="overflow-x: visible;">
+                    <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-striped table-bordered table-hover order-column">
+                        <thead>
+                            <tr>
+                                <th>Nombre corto</th>
+                                <th>Beneficiario</th>
+                                <th>Número de solicitud</th>
+                                <th>Fecha</th>
+                                <th style="max-width:200px">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="solicitud in Solicitudes">
+                                <td><a href="{{ pathURL + '/SolicitudPago/Edit?Id=' + solicitud.Id + '&accion=detail' }}">{{ solicitud.NombreCorto | limitTo : 50 }}</a></td>
+                                <td>{{ solicitud.BeneficiarioNombre }}</td>
+                                <td>{{ solicitud.NumeroSolicitud }}</td>
+                                <td>{{ solicitud.FechaSolicitud | json_js_datetime }}</td>
+                                <td>
+                                    <a ng-click="solicitud.NumeroSolicitud ? '' : Editar(solicitud)" ng-disabled="solicitud.NumeroSolicitud" href="javascript:;" title="Editar" class="btn btn-circle yellow btn-outline btn-xs" style="margin-left:5px"><i class="fa fa-edit"></i> Editar</a>
+                                    <a ng-click="solicitud.NumeroSolicitud ? '' : Eliminar(solicitud.Id)" ng-disabled="solicitud.NumeroSolicitud" href="javascript:;" title="Eliminar" class="btn btn-circle red btn-outline btn-xs" style="margin-left:5px"><i class="fa fa-trash-o"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Nombre corto</th>
+                                <th>Beneficiario</th>
+                                <th>Número de solicitud</th>
+                                <th>Fecha</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_solicitud_pago.*@
+    <script src="~/AngularJS/app/SolicitudPago/controllers/SolicitudPagoIndex.js"></script>
+}

@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Modo fuera de oficina";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<link href="~/AngularJS/lib/angular-datatables.bootstrap/datatables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_fuera_oficina" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="FueraOficinaIndex" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div class="actions">
+
+                </div>
+            </div>
+            <div class="portlet-body">
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+
+                        <div class="note note-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="mt-radio mt-radio-outline" style="margin-bottom: 0 !important">
+                                            En la oficina
+                                            <input ng-model="SeleccionEnFueraOficina" ng-change="UsuarioReasignacion = {}" type="radio" value="1" name="test">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="mt-radio mt-radio-outline" style="margin-bottom: 0 !important">
+                                            Fuera de la oficina
+                                            <input ng-model="SeleccionEnFueraOficina" ng-change="UsuarioReasignacion = {}" type="radio" value="2" name="test">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Reasignar todas las tareas a</b></h3>
+                            </div>
+                            <div class="panel-body form">
+                                <br />
+                                <form class="horizontal-form padding-5">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select ng-model="UsuarioReasignacion" ng-disabled="SeleccionEnFueraOficina == 1" option="Metadatos.Usuarios" ng-options="option.NombreCompleto for option in Metadatos.Usuarios track by option.Usuario" chosen></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 text-align-center margin-top-10 margin-bottom-10">
+                                        <a ng-click="Crear()" class="btn btn-warning" href="javascript:;">Guardar <i class="fa fa-check-square-o"></i></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_fuera_oficina.*@
+    <script src="~/AngularJS/app/FueraOficina/controllers/FueraOficinaIndex.js"></script>
+}
+
+@if (ViewBag.Mensaje != null && ViewBag.Mensaje != string.Empty)
+{
+    <script type="text/javascript">
+        toastr['success']("@ViewBag.Mensaje", "Confirmación");
+    </script>
+}

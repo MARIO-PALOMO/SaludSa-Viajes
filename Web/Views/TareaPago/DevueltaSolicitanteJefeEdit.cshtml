@@ -1,0 +1,431 @@
+﻿
+@{
+    ViewBag.Title = "Edición de solicitud de pago";
+    Layout = "~/Views/Shared/_LayoutPago.cshtml";
+}
+
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+<link href="~/Content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "TareaPago")">Tareas pendientes</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_tarea_pago" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="DevueltaSolicitanteJefeEdit" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-note font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div ng-show="DataAccion != 'show'" class="actions">
+                    <a href="@Url.Action("Index", "TareaPago")" class="btn btn-circle dark btn-outline">Cancelar <i class="fa fa-times"></i></a>
+                    <a ng-click="Crear()" class="btn btn-circle green" href="javascript:;">Enviar <i class="fa fa-check"></i></a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal">
+
+                    <input id="SolicitudId" value="@ViewBag.Id" type="hidden" />
+                    <input id="TareaId" value="@ViewBag.tareaId" type="hidden" />
+                    <input id="Accion" value="@ViewBag.Accion" type="hidden" />
+
+                    <div class="form-body" style="padding-top:0">
+
+                        <div class="note note-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <b>Solicitud No:</b> {{ Solicitud.NumeroSolicitud }}
+                                </div>
+                                <div class="col-md-6">
+                                    <b>Fecha de solicitud:</b> {{ Solicitud.FechaSolicitud }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Información del Solicitante</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Empresa <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.CompaniaDescripcion" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Email <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Email" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Cargo <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Cargo" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Nombre <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.NombreCompleto" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Departamento <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.Departamento" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Ciudad <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.SolicitanteObj.CiudadDescripcion" type="text" class="form-control input-sm" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Información del pago</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Empresa <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <select ng-disabled="DataAccion == 'show'" ng-model="Solicitud.EmpresaParaLaQueSeCompra" ng-change="CambiarEmpresaParaLaQueSeCompra()" option="Metadatos.Empresas" ng-options="option.Nombre for option in Metadatos.Empresas track by option.Codigo" chosen></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Nombre corto <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-7">
+                                                <input ng-disabled="DataAccion == 'show'" ng-model="Solicitud.NombreCorto" maxlength="100" type="text" class="form-control input-sm mayusculas">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">Observación</label>
+                                            <div class="col-md-7">
+                                                <textarea ng-disabled="DataAccion == 'show'" ng-model="Solicitud.Observacion" maxlength="500" class="form-control input-sm mayusculas" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Información del beneficiario</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Identificacion <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.BeneficiarioIdentificacion" disabled maxlength="20" type="text" class="form-control input-sm mayusculas">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Nombre <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <input ng-model="Solicitud.BeneficiarioNombre" disabled maxlength="300" type="text" class="form-control input-sm mayusculas">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <a ng-show="DataAccion != 'show'" ng-click="BuscarBeneficiario()" href="javascript:;" class="btn btn-info btn-block btn-sm" style="margin-top: 3px;"> <i class="fa fa-search"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Información de facturas</b></h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div ng-show="DataAccion != 'show'" class="col-md-12" style="text-align: center">
+                                        <button ng-click="AdicionarFacturaFisica()" type="button" class="btn btn-info"><i class="fa fa-plus"></i> Factura física</button>
+                                        <button ng-click="AdicionarFacturaElectronica()" type="button" class="btn btn-info"><i class="fa fa-plus"></i> Factura electrónica</button>
+                                        <br /><br />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed table-bordered table-advance table-hover table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th ng-show="DataAccion != 'show'" style="min-width:50px; text-align: center;" title="Eliminar factura"><i class="fa fa-trash-o"></i></th>
+                                                        <th style="min-width:50px; text-align: center;" title="Editar factura"><i class="fa fa-edit"></i></th>
+                                                        <th style="min-width:50px; text-align: center;" title="Descargar archivo"><i class="fa fa-download"></i></th>
+                                                        <th style="min-width:100px;">Tipo</th>
+                                                        <th style="min-width:150px;">Factura</th>
+                                                        <th style="min-width:100px;">Fechas</th>
+                                                        <th style="min-width:150px;">Tipo pago</th>
+                                                        <th style="min-width:150px;">Concepto</th>
+                                                        <th style="min-width:80px;">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="Factura in Solicitud.Facturas">
+                                                        <td ng-show="DataAccion != 'show'" style="padding:1px 0 0 0; text-align: center;">
+                                                            <a ng-click="EliminarFactura(Factura)" title="Eliminar" class="btn btn-circle red btn-outline btn-xs" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                                        </td>
+                                                        <td style="padding:1px 0 0 0; text-align: center;">
+                                                            <a ng-click="EditarFactura(Factura)" title="Editar" class="btn btn-circle yellow btn-outline btn-xs" href="javascript:;"><i class="fa fa-edit"></i></a>
+                                                        </td>
+                                                        <td style="padding:1px 0 0 0; text-align: center;">
+                                                            <a ng-click="DescargarAdjuntoFactura(Factura)" ng-show="(!Factura.FacturaAdjunta && Factura.Tipo == 'Física') || Factura.Tipo == 'Electrónica'" title="Descargar archivo" class="btn btn-circle blue btn-outline btn-xs" href="javascript:;"><i class="fa fa-download"></i></a>
+                                                        </td>
+                                                        <td>{{ Factura.Tipo }}</td>
+                                                        <td>
+                                                            <b>No. factura:</b> <br />{{ Factura.NoFactura }}<br />
+                                                            <b>No. autorización:</b> <br />{{ Factura.NoAutorizacion }}
+                                                        </td>
+                                                        <td>
+                                                            <b>Emisión:</b> <br />{{ Factura.FechaEmision }}<br />
+                                                            <b>Vencimiento:</b> <br />{{ Factura.FechaVencimiento }}
+                                                        </td>
+                                                        <td>{{ Factura.TipoPagoObj.Referencia }}</td>
+                                                        <td>{{ Factura.Concepto }}</td>
+                                                        <td>{{ Factura.Total | currency : '' : 2 }}</td>
+                                                    </tr>
+                                                    <tr ng-show="Solicitud.Facturas && Solicitud.Facturas.length != 0">
+                                                        <td colspan="{{ DataAccion != 'show' ? '8' : '7' }}" style="text-align: right"><b>Total:</b></td>
+                                                        <td><b>{{ Solicitud.MontoTotal | currency : '' : 2 }}</b></td>
+                                                    </tr>
+                                                    <tr ng-show="!Solicitud.Facturas || Solicitud.Facturas.length == 0">
+                                                        <td class="text-center" colspan="9"><i class="fa fa-warning text-warning"></i> No existen elementos para mostrar</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Aprobaciones requeridas</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Jefe de Área <span class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-check-circle font-green-sharp"></i>
+                                                    </span>
+                                                    <select ng-disabled="DataAccion == 'show'" ng-model="Solicitud.AprobacionJefeArea" option="Metadatos.JefesAreas" ng-options="option.NombreCompleto for option in Metadatos.JefesAreas track by option.Usuario" chosen></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="Solicitud.MontoTotal >= 2500" class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Subgerente de Área <span ng-show="Solicitud.MontoTotal >= 2500" class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i ng-show="Solicitud.MontoTotal < 2500" class="fa fa-times-circle"></i>
+                                                        <i ng-show="Solicitud.MontoTotal >= 2500" class="fa fa-check-circle font-green-sharp"></i>
+                                                    </span>
+                                                    <select ng-model="Solicitud.AprobacionSubgerenteArea" ng-disabled="Solicitud.MontoTotal < 2500 || DataAccion == 'show'" option="Metadatos.SubgerentesAreas" ng-options="option.NombreCompleto for option in Metadatos.SubgerentesAreas track by option.Usuario" chosen></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="Solicitud.MontoTotal >= 5000 || Solicitud.AprobacionSubgerenteArea.Usuario == 'noaplica_0123'" class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Gerente de Área <span ng-show="Solicitud.MontoTotal >= 5000 || Solicitud.AprobacionSubgerenteArea.Usuario == 'noaplica_0123'" class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i ng-show="Solicitud.MontoTotal < 5000 && Solicitud.AprobacionSubgerenteArea.Usuario != 'noaplica_0123'" class="fa fa-times-circle"></i>
+                                                        <i ng-show="Solicitud.MontoTotal >= 5000 || Solicitud.AprobacionSubgerenteArea.Usuario == 'noaplica_0123'" class="fa fa-check-circle font-green-sharp"></i>
+                                                    </span>
+                                                    <select ng-model="Solicitud.AprobacionGerenteArea" ng-disabled="(Solicitud.MontoTotal < 5000 && Solicitud.AprobacionSubgerenteArea.Usuario != 'noaplica_0123') || DataAccion == 'show'" option="Metadatos.GerentesAreas" ng-options="option.NombreCompleto for option in Metadatos.GerentesAreas track by option.Usuario" chosen></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="Solicitud.MontoTotal >= 10000" class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Vicepresidente Financiero <span ng-show="Solicitud.MontoTotal >= 10000" class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i ng-show="Solicitud.MontoTotal < 10000" class="fa fa-times-circle"></i>
+                                                        <i ng-show="Solicitud.MontoTotal >= 10000" class="fa fa-check-circle font-green-sharp"></i>
+                                                    </span>
+                                                    <select ng-model="Solicitud.AprobacionVicePresidenteFinanciero" ng-disabled="Solicitud.MontoTotal < 10000 || DataAccion == 'show'" option="Metadatos.VicepresidentesFinancieros" ng-options="option.NombreCompleto for option in Metadatos.VicepresidentesFinancieros track by option.Usuario" chosen></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="Solicitud.MontoTotal >= 120000" class="col-md-6 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Gerente General <span ng-show="Solicitud.MontoTotal >= 120000" class="font-red-mint">*</span></label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i ng-show="Solicitud.MontoTotal < 120000" class="fa fa-times-circle"></i>
+                                                        <i ng-show="Solicitud.MontoTotal >= 120000" class="fa fa-check-circle font-green-sharp"></i>
+                                                    </span>
+                                                    <select ng-model="Solicitud.AprobacionGerenteGeneral" ng-disabled="Solicitud.MontoTotal < 120000 || DataAccion == 'show'" option="Metadatos.GerentesGenerales" ng-options="option.NombreCompleto for option in Metadatos.GerentesGenerales track by option.Usuario" chosen></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-align-center"><b>Historial de tareas</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-bordered table-advance">
+                                        <thead>
+                                            <tr>
+                                                <th><i class="fa fa-flag-o"></i></th>
+                                                <th>No.</th>
+                                                <th><i class="fa fa-tasks"></i> Actividad</th>
+                                                <th><i class="fa fa-user-secret"></i> Responsable</th>
+                                                <th><i class="fa fa-calendar"></i> Creación</th>
+                                                <th><i class="fa fa-calendar"></i> Procesamiento</th>
+                                                <th> <i class="fa fa-cogs"></i> Acción</th>
+                                                <th> Observación</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="(Index, Tarea) in Solicitud.Tareas">
+                                                <td>
+                                                    <i ng-show="Tarea.TiempoColor == 1" class="fa fa-flag font-green-sharp"></i>
+                                                    <i ng-show="Tarea.TiempoColor == 2" class="fa fa-flag text-warning"></i>
+                                                    <i ng-show="Tarea.TiempoColor == 3" class="fa fa-flag font-red-mint"></i>
+                                                </td>
+                                                <td>{{ Index + 1 }}</td>
+                                                <td>{{ Tarea.Actividad }}</td>
+                                                <td>{{ Tarea.NombreCompletoResponsable }}</td>
+                                                <td>{{ Tarea.FechaCreacion | json_js_datetime }}</td>
+                                                <td>{{ Tarea.FechaProcesamiento | json_js_datetime }}</td>
+                                                <td>{{ Tarea.Accion }}</td>
+                                                <td>{{ Tarea.Observacion }}</td>
+                                            </tr>
+                                            <tr ng-show="!Solicitud.Tareas || Solicitud.Tareas.length == 0">
+                                                <td class="text-center" colspan="8"><i class="fa fa-warning text-warning"></i> No existen elementos para mostrar</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-show="DataAccion != 'show'" class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a href="@Url.Action("Index", "TareaPago")" class="btn btn-circle dark btn-outline">Cancelar <i class="fa fa-times"></i></a>
+                                        <a ng-click="Crear()" class="btn btn-circle green" href="javascript:;">Enviar <i class="fa fa-check"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Datepicker.*@
+    <script src="~/Content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="~/Content/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_platilla_distribucion.*@
+    <script src="~/AngularJS/app/PlantillaDistribucion/controllers/PlantillaDistribucionCreate.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_solicitud_pago.*@
+    <script src="~/AngularJS/app/TareaPago/controllers/DevueltaSolicitanteJefeEdit.js"></script>
+    <script src="~/AngularJS/app/SolicitudPago/controllers/SolicitudPagoBuscarBeneficiario.js"></script>
+    <script src="~/AngularJS/app/SolicitudPago/controllers/SolicitudPagoFacturaFisica.js"></script>
+    <script src="~/AngularJS/app/SolicitudPago/controllers/BuscarFacturasElectronicas.js"></script>
+
+}

@@ -1,0 +1,310 @@
+﻿@{
+    var url = ViewContext.RouteData.Values["Controller"].ToString();
+    Common.Utilities.ContenedorVariablesSesion sesion = Session["vars"] as Common.Utilities.ContenedorVariablesSesion;
+    Data.Context.ApplicationDbContext db = new Data.Context.ApplicationDbContext();
+    int CantTareasPendientes = /*Logic.TareaBLL.ObtenerCantidadTareasPendientes(sesion, db)*/Model;
+
+
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            <ul class="page-sidebar-menu  page-header-fixed hidden-sm hidden-xs" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                <li class="sidebar-toggler-wrapper hide">
+                    <div class="sidebar-toggler">
+                        <span></span>
+                    </div>
+                </li>
+
+                <li class="heading">
+                    <h3 class="uppercase">Menu</h3>
+                </li>
+
+                <li class="nav-item start  @(url == "Home" ? "active open" : "")">
+                    <a href="@Url.Action("Index", "Home")" class="nav-link nav-toggle">
+                        <i class="icon-home"></i>
+                        <span class="title">Inicio</span>
+                        @if (url == "Home")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                </li>
+
+                <li class="nav-item start @(url == "Tarea" ? "active open" : "")">
+                    <a href="@Url.Action("Index", "Tarea")" class="nav-link nav-toggle">
+                        <i class="icon-pin"></i>
+                        <span class="title">Tareas pendientes</span>
+                        @if (CantTareasPendientes > 0)
+                        {
+                            <span class="badge badge-danger">@(CantTareasPendientes)</span>
+                        }
+                        @if (url == "Tarea")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                </li>
+
+                <li class="nav-item start @(url == "SolicitudCompra" ? "active open" : "")">
+                    <a href="@Url.Action("Index", "SolicitudCompra")" class="nav-link nav-toggle">
+                        <i class="icon-basket"></i>
+                        <span class="title">Solicitudes de compra</span>
+                        @if (url == "SolicitudCompra")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                </li>
+
+                @if (sesion != null && (sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_HISTORIAL_TAREAS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_SEGUIMIENTO_PROCESOS)))
+                {
+                    <li class="nav-item start @((url == "SeguimientoProcesos" || url == "HistorialTareas") ? "active open" : "")">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">Reportes</span>
+                            <span class="arrow @((url == "SeguimientoProcesos" || url == "HistorialTareas") ? "open" : "")"></span>
+                            @if (url == "SeguimientoProcesos" || url == "HistorialTareas")
+                            {
+                                <span class="selected"></span>
+                            }
+                        </a>
+                        <ul class="sub-menu">
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_HISTORIAL_TAREAS))
+                            {
+                                <li class="nav-item start @(url == "HistorialTareas" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "HistorialTareas")" class="nav-link ">
+                                        <span class="title">Historial de tareas</span>
+                                    </a>
+                                </li>
+                            }
+                            @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_SEGUIMIENTO_PROCESOS))
+                            {
+                                <li class="nav-item start @(url == "SeguimientoProcesos" ? "active open" : "")">
+                                    <a href="@Url.Action("Index", "SeguimientoProcesos")" class="nav-link ">
+                                        <span class="title">Seguimiento de procesos</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+                <li class="nav-item start @(url == "RolGestorCompra" || url == "ReasignacionTareas" || url == "DetenerSolicitud" || url == "AnulacionRecepcion" || url == "EmailPendiente" || url == "ReasignacionOriginadorCompra"  ? "active open" : "")">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-cog"></i>
+                        <span class="title">Administración</span>
+                        <span class="arrow @(url == "RolGestorCompra" || url == "ReasignacionTareas" || url == "DetenerSolicitud" || url == "AnulacionRecepcion" || url == "EmailPendiente" || url == "ReasignacionOriginadorCompra" ? "open" : "")"></span>
+                        @if (url == "RolGestorCompra" || url == "ReasignacionTareas" || url == "DetenerSolicitud" || url == "AnulacionRecepcion" || url == "EmailPendiente" || url == "ReasignacionOriginadorCompra")
+                        {
+                            <span class="selected"></span>
+                        }
+                    </a>
+                    <ul class="sub-menu">
+                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_ROLES_GESTORES_COMPRA))
+                        {
+                            <li class="nav-item start @(url == "RolGestorCompra" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "RolGestorCompra")" class="nav-link ">
+                                    <span class="title">Roles gestores de compra</span>
+                                </a>
+                            </li>
+                        }
+                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REASIGNACION_TAREAS))
+                        {
+                            <li class="nav-item start @(url == "ReasignacionTareas" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "ReasignacionTareas")" class="nav-link ">
+                                    <span class="title">Reasignación de tareas</span>
+                                </a>
+                            </li>
+                        }
+                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_DETENER_SOLICITUDES))
+                        {
+                            <li class="nav-item start @(url == "DetenerSolicitud" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "DetenerSolicitud")" class="nav-link ">
+                                    <span class="title">Detener solicitudes</span>
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-item start @(url == "AnulacionRecepcion" ? "active open" : "")">
+                            <a href="@Url.Action("Index", "AnulacionRecepcion")" class="nav-link ">
+                                <span class="title">Anular recepciones</span>
+                            </a>
+                        </li>
+
+                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REASIGNACION_ORIGINADOR))
+                        {
+                            <li class="nav-item start @(url == "ReasignacionOriginadorCompra" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "ReasignacionOriginadorCompra")" class="nav-link ">
+                                    <span class="title">Reasignar originadores</span>
+                                </a>
+                            </li>
+                        }
+                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_EMAILS_PENDIENTES))
+                        {
+                            <li class="nav-item start @(url == "EmailPendiente" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "EmailPendiente")" class="nav-link ">
+                                    <span class="title">Emails pendientes</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+
+            <!--**************************************************-->
+            <div class="page-sidebar-wrapper">
+                <ul class="page-sidebar-menu visible-sm visible-xs page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="nav-item start active open">
+                        <a href="index.html" class="nav-link nav-toggle">
+                            Compras
+                            <span class="selected"> </span>
+                            <span class="arrow open"> </span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start  @(url == "Home" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "Home")" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Inicio</span>
+                                    @if (url == "Home")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                            </li>
+
+                            <li class="nav-item start @(url == "Tarea" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "Tarea")" class="nav-link nav-toggle">
+                                    <i class="icon-pin"></i>
+                                    <span class="title">Tareas pendientes</span>
+                                    @if (CantTareasPendientes > 0)
+                                    {
+                                        <span class="badge badge-danger">@(CantTareasPendientes)</span>
+                                    }
+                                    @if (url == "Tarea")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                            </li>
+
+                            <li class="nav-item start @(url == "SolicitudCompra" ? "active open" : "")">
+                                <a href="@Url.Action("Index", "SolicitudCompra")" class="nav-link nav-toggle">
+                                    <i class="icon-basket"></i>
+                                    <span class="title">Solicitudes de compra</span>
+                                    @if (url == "SolicitudCompra")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                            </li>
+
+                            @if (sesion != null && (sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_HISTORIAL_TAREAS) || sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_SEGUIMIENTO_PROCESOS)))
+                            {
+                                <li class="nav-item start @((url == "SeguimientoProcesos" || url == "HistorialTareas") ? "active open" : "")">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="title">Reportes</span>
+                                        <span class="arrow @((url == "SeguimientoProcesos" || url == "HistorialTareas") ? "open" : "")"></span>
+                                        @if (url == "SeguimientoProcesos" || url == "HistorialTareas")
+                                        {
+                                            <span class="selected"></span>
+                                        }
+                                    </a>
+                                    <ul class="sub-menu">
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_HISTORIAL_TAREAS))
+                                        {
+                                            <li class="nav-item start @(url == "HistorialTareas" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "HistorialTareas")" class="nav-link ">
+                                                    <span class="title">Historial de tareas</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REPORTE_SEGUIMIENTO_PROCESOS))
+                                        {
+                                            <li class="nav-item start @(url == "SeguimientoProcesos" ? "active open" : "")">
+                                                <a href="@Url.Action("Index", "SeguimientoProcesos")" class="nav-link ">
+                                                    <span class="title">Seguimiento de procesos</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+                            <li class="nav-item start @(url == "RolGestorCompra" || url == "ReasignacionTareas" || url == "DetenerSolicitud" || url == "AnulacionRecepcion" || url == "EmailPendiente" || url == "ReasignacionOriginadorCompra"  ? "active open" : "")">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="fa fa-cog"></i>
+                                    <span class="title">Administración</span>
+                                    <span class="arrow @(url == "RolGestorCompra" || url == "ReasignacionTareas" || url == "DetenerSolicitud" || url == "AnulacionRecepcion" || url == "EmailPendiente" || url == "ReasignacionOriginadorCompra" ? "open" : "")"></span>
+                                    @if (url == "RolGestorCompra" || url == "ReasignacionTareas" || url == "DetenerSolicitud" || url == "AnulacionRecepcion" || url == "EmailPendiente" || url == "ReasignacionOriginadorCompra")
+                                    {
+                                        <span class="selected"></span>
+                                    }
+                                </a>
+                                <ul class="sub-menu">
+                                    @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_ROLES_GESTORES_COMPRA))
+                                    {
+                                        <li class="nav-item start @(url == "RolGestorCompra" ? "active open" : "")">
+                                            <a href="@Url.Action("Index", "RolGestorCompra")" class="nav-link ">
+                                                <span class="title">Roles gestores de compra</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REASIGNACION_TAREAS))
+                                    {
+                                        <li class="nav-item start @(url == "ReasignacionTareas" ? "active open" : "")">
+                                            <a href="@Url.Action("Index", "ReasignacionTareas")" class="nav-link ">
+                                                <span class="title">Reasignación de tareas</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_DETENER_SOLICITUDES))
+                                    {
+                                        <li class="nav-item start @(url == "DetenerSolicitud" ? "active open" : "")">
+                                            <a href="@Url.Action("Index", "DetenerSolicitud")" class="nav-link ">
+                                                <span class="title">Detener solicitudes</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    <li class="nav-item start @(url == "AnulacionRecepcion" ? "active open" : "")">
+                                        <a href="@Url.Action("Index", "AnulacionRecepcion")" class="nav-link ">
+                                            <span class="title">Anular recepciones</span>
+                                        </a>
+                                    </li>
+
+                                    @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_REASIGNACION_ORIGINADOR))
+                                    {
+                                        <li class="nav-item start @(url == "ReasignacionOriginadorCompra" ? "active open" : "")">
+                                            <a href="@Url.Action("Index", "ReasignacionOriginadorCompra")" class="nav-link ">
+                                                <span class="title">Reasignar originadores</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (sesion != null && sesion.RolesAdministrativos.Contains((long)Common.Utilities.EnumRol.ADMIN_COMPRA_EMAILS_PENDIENTES))
+                                    {
+                                        <li class="nav-item start @(url == "EmailPendiente" ? "active open" : "")">
+                                            <a href="@Url.Action("Index", "EmailPendiente")" class="nav-link ">
+                                                <span class="title">Emails pendientes</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "SolicitudPago")" class="nav-link nav-toggle">
+                            Pagos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            Viajes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--**************************************************-->
+        </div>
+    </div>
+}

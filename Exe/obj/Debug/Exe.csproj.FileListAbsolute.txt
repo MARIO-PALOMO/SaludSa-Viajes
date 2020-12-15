@@ -1,0 +1,6 @@
+C:\Users\mario\Documents\SaludSA\Exe\bin\Debug\Exe.exe.config
+C:\Users\mario\Documents\SaludSA\Exe\bin\Debug\Exe.exe
+C:\Users\mario\Documents\SaludSA\Exe\bin\Debug\Exe.pdb
+C:\Users\mario\Documents\SaludSA\Exe\obj\Debug\Exe.csproj.CoreCompileInputs.cache
+C:\Users\mario\Documents\SaludSA\Exe\obj\Debug\Exe.exe
+C:\Users\mario\Documents\SaludSA\Exe\obj\Debug\Exe.pdb

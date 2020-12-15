@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="row" style="display: none" id="panel-listado-general-fade">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img style="width: 100%" src="~/Content/img/index.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+<script>
+    jQuery('#panel-listado-general-fade').fadeIn(2000);
+</script>

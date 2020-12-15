@@ -1,0 +1,164 @@
+<app-client-header></app-client-header>
+
+<div
+  style="background-image: url('assets/images/hero-bg.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover; min-height: calc(100vh - 0px);">
+
+  <div class="box-1">
+
+    <div class="section-tab text-center pl-4">
+      <ul class="nav nav-tabs" id="navigation-register" role="tablist">
+        <li class="nav-item" id="tab1" style="pointer-events: none;" (click)="navigationBack(0)">
+          <a class="nav-link d-flex align-items-center active" id="register-tab"
+            role="tab" aria-controls="flight" aria-selected="true">
+            <i class="las la-user-tie"></i> Registrador
+          </a>
+        </li>
+        <li class="nav-item" id="tab2" style="pointer-events: none;" (click)="navigationBack(1)">
+          <a class="nav-link d-flex align-items-center travel-tab" id="travel-tab" role="tab"
+            aria-controls="hotel" aria-selected="false">
+            <i class="las la-map-marked-alt"></i> Viaje
+          </a>
+        </li>
+        <li class="nav-item" id="tab3" style="pointer-events: none;" (click)="navigationBack(2)">
+          <a class="nav-link d-flex align-items-center" id="transport-tab"
+            role="tab" aria-controls="package" aria-selected="false">
+            <i class="las la-globe"></i> Transporte
+          </a>
+        </li>
+        <li class="nav-item" id="tab4" style="pointer-events: none;" (click)="navigationBack(3)">
+          <a class="nav-link d-flex align-items-center" id="hotel-tab" role="tab"
+            aria-controls="car" aria-selected="true">
+            <i class="la la-building"></i> Hospedaje
+          </a>
+        </li>
+        <li class="nav-item" id="tab5" style="pointer-events: none;" (click)="navigationBack(4)">
+          <a class="nav-link d-flex align-items-center" id="money-tab" role="tab"
+            aria-controls="cruise" aria-selected="false">
+            <i class="las la-comment-dollar"></i> Viáticos
+          </a>
+        </li>
+        <li class="nav-item" id="tab6" style="pointer-events: none;" (click)="navigationBack(5)">
+          <a class="nav-link d-flex align-items-center" id="approver-tab" role="tab"
+            aria-controls="tour" aria-selected="false">
+            <i class="las la-user-plus"></i> Aprobador
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content search-fields-container" id="myTabContent">
+      <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
+        <div class="tab-pane fade show active" id="one-way" role="tabpanel" aria-labelledby="one-way-tab">
+
+          <app-reservation-register [dtRegister]="dtRegister" [vlRegister]="vlRegister"></app-reservation-register>
+
+          <div class="row" style="padding-right: 20px; padding-bottom: 20px;">
+            <div class="col-md-12">
+              <div class="text-right">
+                <button class="theme-btn" (click)="nextSteep(1)">
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="tab-pane fade" id="travel" role="tabpanel" aria-labelledby="travel-tab">
+
+        <app-reservation-travel [dtTravel]="dtTravel" [vlTravel]="vlTravel"></app-reservation-travel>
+
+        <div class="row" style="padding-right: 20px; padding-bottom: 20px;">
+          <div class="col-md-12">
+            <div class="text-right">
+              <button class="theme-btn-danger" (click)="navigationBack(0)">
+                &nbsp;&nbsp; Atrás &nbsp;&nbsp;
+              </button>
+              <button class="theme-btn" (click)="nextSteep(2);">
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="transport" role="tabpanel" aria-labelledby="transport-tab">
+
+        <app-reservation-transport [dtTravel]="dtTravel" [dtTransport]="dtTransport" [vlTransport]="vlTransport"
+          [lstParameters]="lstParameters"></app-reservation-transport>
+
+        <div class="row" style="padding-right: 20px; padding-bottom: 20px;">
+          <div class="col-md-12">
+            <div class="text-right">
+              <button class="theme-btn-danger" (click)="navigationBack(1)">
+                &nbsp;&nbsp; Atrás &nbsp;&nbsp;
+              </button>
+              <button class="theme-btn" (click)="nextSteep(3);">
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+
+        <app-reservation-lodging [dtHotel]="dtHotel" [vlHotel]="vlHotel" [dtTransport]="dtTransport">
+        </app-reservation-lodging>
+
+        <div class="row" style="padding-right: 20px; padding-bottom: 20px;">
+          <div class="col-md-12">
+            <div class="text-right">
+              <button class="theme-btn-danger" (click)="navigationBack(2)">
+                &nbsp;&nbsp; Atrás &nbsp;&nbsp;
+              </button>
+              <button class="theme-btn" (click)="nextSteep(4);">
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end tab-pane -->
+      <div class="tab-pane fade" id="money" role="tabpanel" aria-labelledby="money-tab">
+
+        <app-reservation-travel-expenses [dtTravel]="dtTravel" [dtTransport]="dtTransport" [dtHotel]="dtHotel"
+          [dtMoney]="dtMoney" [lstParameters]="lstParameters"></app-reservation-travel-expenses>
+
+
+          <div class="row" style="padding-right: 20px; padding-bottom: 20px;">
+            <div class="col-md-12">
+              <div class="text-right">
+                <button class="theme-btn-danger" (click)="navigationBack(3)">
+                  &nbsp;&nbsp; Atrás &nbsp;&nbsp;
+                </button>
+                <button class="theme-btn" (click)="nextSteep(5);">
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+
+      </div><!-- end tab-pane -->
+      <div class="tab-pane fade" id="approver" role="tabpanel" aria-labelledby="approver-tab">
+        
+        <app-approver [dtApprover]="dtApprover" [vlApprover]="vlApprover"></app-approver>
+
+        <div class="row" style="padding-right: 20px; padding-bottom: 20px;">
+          <div class="col-md-12">
+            <div class="text-right">
+              <button class="theme-btn-danger" (click)="navigationBack(4)">
+                &nbsp;&nbsp; Atrás &nbsp;&nbsp;
+              </button>
+              <button class="theme-btn" (click)="finalizarReserva();">
+                Finalizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div><!-- end tab-pane -->
+    </div>
+  </div>
+
+
+</div>

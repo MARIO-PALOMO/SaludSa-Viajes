@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Configuraciones factura electrónica";
+    Layout = "~/Views/Shared/_LayoutPago.cshtml";
+}
+
+<link href="~/AngularJS/lib/angular-datatables.bootstrap/datatables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen.min.css" rel="stylesheet" />
+<link href="~/AngularJS/lib/jquery-chosen/chosen-sprite.png" rel="image_src" />
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+
+<br />
+
+<div ng-app="app_config_fact_electronica_pago" class="row" style="display: none" id="panel-listado-general-fade">
+    <div ng-controller="ConfigFactElectronicaPagoIndex" class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject bold uppercase"> @ViewBag.Title</span>
+                </div>
+                <div class="actions">
+
+                    <a ng-click="Adicionar()" href="javascript:;" class="btn btn-circle blue btn-outline">Nueva configuración <i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive" style="overflow-x: visible;">
+                    <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-striped table-bordered table-hover order-column">
+                        <thead>
+                            <tr>
+                                <th>RUC proveedor</th>
+                                <th>Nombre campo</th>
+                                <th>Operación</th>
+                                <th style="max-width:170px">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Configuracion in Configuraciones">
+                                <td><a ng-click="Detalle(Configuracion.Id)" href="javascript:;">{{ Configuracion.RucProvedor }}</a></td>
+                                <td>{{ Configuracion.Campo }}</td>
+                                <td>{{ Configuracion.Operacion }}</td>
+                                <td>
+                                    <a ng-click="Editar(Configuracion.Id)" title="Editar" class="btn btn-circle yellow btn-outline btn-xs" style="margin-left:5px"><i class="fa fa-edit"></i> Editar</a>
+                                    <a ng-click="Eliminar(Configuracion.Id)" title="Eliminar" class="btn btn-circle red btn-outline btn-xs" style="margin-left:5px"><i class="fa fa-trash-o"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>RUC proveedor</th>
+                                <th>Nombre campo</th>
+                                <th>Operación</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section Scripts {
+
+    @*Eduardo: Datatables.*@
+    <script src="~/AngularJS/lib/jquery-datatables/jquery.dataTables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables/angular-datatables.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables.bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="~/AngularJS/lib/jquery-datatables-columnfilter/dataTables.columnFilter.js"></script>
+    <script src="~/AngularJS/lib/angular-datatables-columnfilter/angular-datatables.columnfilter.min.js"></script>
+
+    @*Eduardo: Bootstrap.*@
+    <script src="~/AngularJS/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+    @*Eduardo: Chosen.*@
+    <script src="~/AngularJS/lib/jquery-chosen/chosen.jquery.min.js"></script>
+    <script src="~/AngularJS/lib/angular-chosen/angular-chosen.min.js"></script>
+
+    @*Eduardo: Archivos JS propios del módulo app_config_fact_electronica_pago.*@
+    <script src="~/AngularJS/app/ConfigFactElectronicaPago/controllers/ConfigFactElectronicaPagoIndex.js"></script>
+    <script src="~/AngularJS/app/ConfigFactElectronicaPago/controllers/ConfigFactElectronicaPagoCreate.js"></script>
+    <script src="~/AngularJS/app/ConfigFactElectronicaPago/controllers/ConfigFactElectronicaPagoEdit.js"></script>
+}
