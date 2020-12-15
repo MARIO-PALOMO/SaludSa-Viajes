@@ -107,7 +107,7 @@ export class IndexComponent implements OnInit {
 
     numberKilometers: null,
     valueKilometers: null,
-    
+
     total: null
   };
 
@@ -141,7 +141,7 @@ export class IndexComponent implements OnInit {
   }
 
   lstParameters = [];
-  
+
   nombres = [];
   apellidos = [];
   flagRute = 0;

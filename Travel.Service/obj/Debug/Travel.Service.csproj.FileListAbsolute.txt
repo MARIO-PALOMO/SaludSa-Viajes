@@ -68,3 +68,38 @@ C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Tra
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.csproj.CopyComplete
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.dll
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Service\obj\Debug\Travel.Service.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Service.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Service.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Service.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Common.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Controller.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Entity.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\RestSharp.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\log4net.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Model.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Rest.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Logic.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Data.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Newtonsoft.Json.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\EntityFramework.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\CrystalDecisions.Shared.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Common.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Common.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Controller.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Entity.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\RestSharp.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\log4net.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Travel.Model.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Rest.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Logic.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Logic.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Data.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Data.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\Newtonsoft.Json.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\bin\EntityFramework.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\obj\Debug\Travel.Service.csprojAssemblyReference.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\obj\Debug\Travel.Service.csproj.CoreCompileInputs.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\obj\Debug\Travel.Service.csproj.CopyComplete
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\obj\Debug\Travel.Service.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Service\obj\Debug\Travel.Service.pdb

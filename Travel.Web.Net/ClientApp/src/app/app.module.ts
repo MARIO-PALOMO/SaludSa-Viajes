@@ -31,9 +31,16 @@ import { ValidationsService } from './methods/validations/validations.service';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { CalendarModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 import '@progress/kendo-angular-intl/locales/es/all';
 import { InternalDataService } from './controllers/internal/data/data.service';
+import { DashboardComponent } from './view/admistrator/dashboard/dashboard.component';
+import { TopBarComponent } from './view/admistrator/component/top-bar/top-bar.component';
+import { SideBarComponent } from './view/admistrator/component/side-bar/side-bar.component';
+import { HotelsComponent } from './view/admistrator/hotels/hotels.component';
+import { RutesComponent } from './view/admistrator/rutes/rutes.component';
+import { ErrorsComponent } from './view/admistrator/errors/errors.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +57,13 @@ import { InternalDataService } from './controllers/internal/data/data.service';
     RegisterComponent,
     TransportComponent,
     TravelComponent,
-    TravelExpensesComponent
+    TravelExpensesComponent,
+    DashboardComponent,
+    TopBarComponent,
+    SideBarComponent,
+    HotelsComponent,
+    RutesComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -61,9 +74,14 @@ import { InternalDataService } from './controllers/internal/data/data.service';
     DateInputsModule,
     CalendarModule,
     IntlModule,
+    GridModule,
     RouterModule.forRoot([
       { path: 'client/reservation', component: IndexComponent, pathMatch: 'full' },
-      { path: 'client/reservation/list/:data', component: ReservationListComponent }
+      { path: 'client/reservation/list/:data', component: ReservationListComponent },
+      { path: 'admistrator/dashboard', component: DashboardComponent },
+      { path: 'admistrator/hotels', component: HotelsComponent },
+      { path: 'admistrator/rutes', component: RutesComponent },
+      { path: 'admistrator/errors', component: ErrorsComponent },
     ])
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-ES' },UserService, ValidationsService, ExternalDataService, ApiService, SessionExternalService, SessionInternalService, GlobalsService, InternalDataService],

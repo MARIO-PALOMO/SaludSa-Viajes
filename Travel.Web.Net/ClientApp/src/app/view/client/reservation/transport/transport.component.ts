@@ -44,7 +44,7 @@ export class TransportComponent implements OnInit {
 
     numberKilometers: null,
     valueKilometers: null,
-    
+
     dtImpuesto: null
   };
 
@@ -83,11 +83,16 @@ export class TransportComponent implements OnInit {
 
   constructor(public dataInternalService: InternalDataService, public validations_: ValidationsService, public global: GlobalsService) { }
 
-  ngOnInit() {
+
+  ngAfterContentInit() {
     this.obtenerRutas();
     setTimeout(() => {
       this.gerParemeters();
-    }, 2000);
+    }, 4000);
+  }
+
+  ngOnInit() {
+
   }
 
   gerParemeters() {

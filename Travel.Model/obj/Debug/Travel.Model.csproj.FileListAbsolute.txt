@@ -58,3 +58,33 @@ C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Model\obj\Debug\Trave
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Model\obj\Debug\Travel.Model.csproj.CopyComplete
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Model\obj\Debug\Travel.Model.dll
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Model\obj\Debug\Travel.Model.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Travel.Model.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Travel.Model.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Common.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Logic.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Rest.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Travel.Entity.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\RestSharp.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\log4net.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Data.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\EntityFramework.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Common.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Common.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Logic.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Logic.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Rest.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Travel.Entity.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\RestSharp.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\log4net.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Data.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Data.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\EntityFramework.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\obj\Debug\Travel.Model.csprojAssemblyReference.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\obj\Debug\Travel.Model.csproj.CoreCompileInputs.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\obj\Debug\Travel.Model.csproj.CopyComplete
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\obj\Debug\Travel.Model.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Model\obj\Debug\Travel.Model.pdb

@@ -58,7 +58,6 @@ export class TravelComponent implements OnInit {
   constructor(public global: GlobalsService, public validations_: ValidationsService) { }
 
   ngOnInit() {
-    console.log("this.dtTravel-Travel", this.dtTravel);
   }
 
   public validations() {

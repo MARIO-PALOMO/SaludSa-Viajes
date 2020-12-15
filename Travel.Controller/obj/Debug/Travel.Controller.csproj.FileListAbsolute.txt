@@ -62,3 +62,35 @@ C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Controller\obj\Debug\
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Controller\obj\Debug\Travel.Controller.csproj.CopyComplete
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Controller\obj\Debug\Travel.Controller.dll
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Controller\obj\Debug\Travel.Controller.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Travel.Controller.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Travel.Controller.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Common.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Travel.Entity.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Travel.Model.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\RestSharp.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\log4net.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Rest.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Logic.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Data.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\EntityFramework.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Common.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Common.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Travel.Entity.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Travel.Model.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\RestSharp.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\log4net.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Rest.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Logic.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Logic.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Data.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Data.dll.config
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\bin\Debug\EntityFramework.xml
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\obj\Debug\Travel.Controller.csprojAssemblyReference.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\obj\Debug\Travel.Controller.csproj.CoreCompileInputs.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\obj\Debug\Travel.Controller.csproj.CopyComplete
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\obj\Debug\Travel.Controller.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Controller\obj\Debug\Travel.Controller.pdb

@@ -75,7 +75,7 @@ export class TravelExpensesComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.getCalculations();
-    }, 1000);
+    }, 4000);
   }
 
   public getViewOtherMoney(){

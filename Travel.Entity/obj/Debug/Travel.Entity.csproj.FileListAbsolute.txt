@@ -10,3 +10,9 @@ C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Trav
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.csproj.CoreCompileInputs.cache
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.dll
 C:\Users\pable\Documents\Visual Studio 2019\SaludSA\Travel.Entity\obj\Debug\Travel.Entity.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Entity\bin\Debug\Travel.Entity.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Entity\bin\Debug\Travel.Entity.pdb
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Entity\obj\Debug\Travel.Entity.csprojAssemblyReference.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Entity\obj\Debug\Travel.Entity.csproj.CoreCompileInputs.cache
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Entity\obj\Debug\Travel.Entity.dll
+C:\Users\ESCRITORIO\Documents\Programacion\SaludSa\Viajes\SaludSa-Viajes\Travel.Entity\obj\Debug\Travel.Entity.pdb
